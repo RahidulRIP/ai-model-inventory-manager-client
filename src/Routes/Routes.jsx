@@ -5,6 +5,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import SignIn from "../Pages/SignIn/SignIn";
 import RoutesErrorPage from "../Components/Error/RouterErrorPage";
 import Banner from "../Components/Home/Banner/Banner";
+import AllModels from "../Pages/AllModels/AllModels";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "signIn",
         Component: SignIn,
+      },
+      {
+        path: "allModels",
+        Component: AllModels,
       },
     ],
   },
