@@ -1,13 +1,25 @@
-import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useNavigate } from "react-router";
-import { useContext } from "react";
+import { useParams } from "react-router";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/Context/AuthContext";
+import Loader from "../../Components/Shared/Loader";
 
-const AddModel = () => {
+const UpdatePage = () => {
+  const [detailsData, setDetailsData] = useState({});
+  const [leading, setLoading] = useState(true);
+  const { id } = useParams();
   const axiosPublic = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  //   const navigate = useNavigate();
+
+  useEffect(() => {
+    axiosPublic
+      .get(`http://localhost:7000/models/${id}`)
+      .then((res) => setDetailsData(res?.data));
+
+    setLoading(false);
+  }, [id, axiosPublic]);
+
   const handleAddModel = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -31,17 +43,16 @@ const AddModel = () => {
       createdAt,
       purchased,
     };
-    const data = await axiosPublic.post("/addModel", addModelInfo);
-    if (data.data.insertedId) {
-      toast.success("AI Model Data Add successfully!");
-      navigate("/allModels");
-    }
+    console.log(addModelInfo);
   };
 
+  if (leading) {
+    return <Loader />;
+  }
   return (
     <div className="my-[var(--section-gap)] max-w-3xl mx-auto p-8 bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-lg border border-gray-100">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-        Add AI Model
+        Update AI Model Data
       </h2>
 
       <form onSubmit={handleAddModel} className="space-y-8">
@@ -53,6 +64,7 @@ const AddModel = () => {
             <input
               type="text"
               name="name"
+              defaultValue={detailsData?.name}
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="name"
             />
@@ -127,7 +139,7 @@ const AddModel = () => {
             <input
               type="email"
               name="email"
-              defaultValue={user.email}
+              defaultValue={user?.email}
               readOnly
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="user@example.com"
@@ -165,7 +177,7 @@ const AddModel = () => {
             type="submit"
             className="px-6 py-2.5 w-full rounded-xl bg-indigo-600 text-white font-medium shadow hover:bg-indigo-700 transition duration-200"
           >
-            Save
+            Update
           </button>
 
           <button
@@ -180,4 +192,4 @@ const AddModel = () => {
   );
 };
 
-export default AddModel;
+export default UpdatePage;

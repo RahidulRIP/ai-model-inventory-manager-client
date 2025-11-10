@@ -9,6 +9,7 @@ import AllModels from "../Pages/AllModels/AllModels";
 import AddModel from "../Pages/AddModel/AddModel";
 import PrivateRoute from "./PrivateRoute";
 import ModelCardDetails from "../Components/Cards/ModelCardDetails";
+import UpdatePage from "../Pages/UpdatePage/UpdatePage";
 
 const router = createBrowserRouter([
   {
@@ -46,8 +47,10 @@ const router = createBrowserRouter([
             <ModelCardDetails />
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:7000/models/${params?.id}`),
+      },
+      {
+        path: "updateAiModelData/:id",
+        element: <UpdatePage />,
       },
     ],
   },

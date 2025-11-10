@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { Link, useParams } from "react-router";
 import {
   FaCalendarAlt,
   FaUser,
@@ -7,23 +7,52 @@ import {
   FaRobot,
 } from "react-icons/fa";
 import Container from "../Container/Container";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/Context/AuthContext";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import Loader from "../Shared/Loader";
 
 const ModelCardDetails = () => {
+  const [detailsData, setDetailsData] = useState({});
+  const [leading, setLoading] = useState(true);
+  const [refetch, setRefetch] = useState(false);
   const { user } = useContext(AuthContext);
-  const detailsData = useLoaderData();
-  const {
-    image,
-    framework,
-    name,
-    description,
-    useCase,
-    createdAt,
-    createdBy,
-    dataset,
-    purchased,
-  } = detailsData;
+  const axiosPublic = useAxiosSecure();
+  const { id } = useParams();
+
+  useEffect(() => {
+    axiosPublic
+      .get(`http://localhost:7000/models/${id}`)
+      .then((res) => setDetailsData(res?.data));
+
+    setLoading(false);
+  }, [axiosPublic, id, refetch]);
+
+  const handlePurchase = async () => {
+    const purchasedAiModelData = {
+      aiModel_Id: detailsData?._id,
+      name: detailsData?.name,
+      framework: detailsData?.framework,
+      useCase: detailsData?.useCase,
+      createdBy: detailsData?.createdBy,
+      purchased_By: user?.email,
+      image: detailsData?.image,
+    };
+
+    const data = await axiosPublic.post(
+      `/purchased/${detailsData?._id}`,
+      purchasedAiModelData
+    );
+    if (data.data.insertedId) {
+      setRefetch(!refetch);
+      toast.success("Purchased Successful");
+    }
+  };
+
+  if (leading) {
+    return <Loader />;
+  }
 
   return (
     <Container>
@@ -32,64 +61,91 @@ const ModelCardDetails = () => {
           <div className="bg-white rounded-3xl p-6 md:p-8">
             <div className="relative  rounded-2xl mb-6">
               <img
-                src={image}
+                src={detailsData?.image}
                 alt={name}
                 className="w-full h-64 object-cover rounded-2xl transition-transform duration-700 hover:scale-105"
               />
               <span className="absolute top-4 left-4 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-                {framework}
+                {detailsData?.framework}
               </span>
             </div>
 
             <h2 className="text-3xl font-extrabold text-gray-800 mb-3 flex items-center gap-2">
               <FaRobot className="text-indigo-600" />
-              {name}
+              {detailsData?.name}
             </h2>
 
-            <p className="text-gray-600 leading-relaxed mb-6">{description}</p>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              {detailsData?.description}
+            </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
               <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-xl">
                 <FaCalendarAlt className="text-pink-500 text-lg" />
                 <span>
-                  <span className="font-semibold">Created At:</span> {createdAt}
+                  <span className="font-semibold">Created At:</span>{" "}
+                  {detailsData?.createdAt}
                 </span>
               </div>
 
               <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-xl">
                 <FaUser className="text-indigo-500 text-lg" />
                 <span>
-                  <span className="font-semibold">Created By:</span> {createdBy}
+                  <span className="font-semibold">Created By:</span>{" "}
+                  {detailsData?.createdBy}
                 </span>
               </div>
 
               <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-xl">
                 <FaDatabase className="text-orange-500 text-lg" />
                 <span>
-                  <span className="font-semibold">Dataset:</span> {dataset}
+                  <span className="font-semibold">Dataset:</span>{" "}
+                  {detailsData?.dataset}
                 </span>
               </div>
 
               <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-xl">
                 <FaShoppingCart className="text-pink-500 text-lg" />
                 <span>
-                  <span className="font-semibold">Purchased:</span> {purchased}
+                  <span className="font-semibold">Purchased:</span>{" "}
+                  {detailsData?.purchased}
                 </span>
               </div>
             </div>
 
-            <div className="mt-6 bg-gradient-to-r from-indigo-500 to-pink-500 text-white px-4 py-3 rounded-xl shadow-md">
-              <span className="font-semibold">Use Case:</span> {useCase}
+            <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-xl mt-3.5">
+              <span className="font-semibold">Use Case:</span>{" "}
+              {detailsData?.useCase}
             </div>
 
-            {user?.email == createdBy ? (
+            {user?.email === detailsData?.createdBy ? (
+              <button
+                onClick={handlePurchase}
+                className="mt-6 btn  w-full text-lg rounded-xl shadow-md"
+                disabled={true}
+              >
+                Purchased Model
+              </button>
+            ) : (
+              <button
+                onClick={handlePurchase}
+                className="mt-6 btn my-button w-full text-lg rounded-xl shadow-md cursor-pointer"
+              >
+                Purchased Model
+              </button>
+            )}
+
+            {user?.email === detailsData?.createdBy ? (
               <div className="grid grid-cols-2 gap-10  mt-8">
-                <button className="w-full btn btn-dash transform hover:scale-105 transition-transform duration-700 rounded-full px-6 text-lg">
+                <Link
+                  to={`/updateAiModelData/${detailsData?._id}`}
+                  className="w-full btn btn-dash transform hover:scale-105 transition-transform duration-700 rounded-full px-6 text-lg"
+                >
                   Edit
-                </button>
-                <button className="w-full btn btn-dash transform hover:scale-105 transition-transform duration-700 rounded-full px-6 text-lg">
+                </Link>
+                <Link className="w-full btn btn-dash transform hover:scale-105 transition-transform duration-700 rounded-full px-6 text-lg">
                   Delete
-                </button>
+                </Link>
               </div>
             ) : (
               ""
