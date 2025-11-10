@@ -1,7 +1,37 @@
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+
 const AddModel = () => {
-  const handleAddModel = (e) => {
+  const axiosPublic = useAxiosSecure();
+  const handleAddModel = async (e) => {
     e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const framework = form.framework.value;
+    const useCase = form.useCase.value;
+    const dataSet = form.dataSet.value;
+    const description = form.description.value;
+    const imageURL = form.imageURL.value;
+    const email = form.email.value;
+    const createdAt = form.createdAt.value;
+    const purChased = form.purChased.value;
+    const addModelInfo = {
+      name,
+      framework,
+      useCase,
+      dataSet,
+      description,
+      imageURL,
+      email,
+      createdAt,
+      purChased,
+    };
+    const data = await axiosPublic.post("/addModel", { addModelInfo });
+    if (data.data.insertedId) {
+      toast.success("AI Model Data Add successfully!");
+    }
   };
+
   return (
     <div className="my-[var(--section-gap)] max-w-3xl mx-auto p-8 bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-lg border border-gray-100">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
@@ -115,7 +145,8 @@ const AddModel = () => {
           <input
             type="number"
             name="purChased"
-            min="0"
+            defaultValue={0}
+            readOnly
             className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
             placeholder="number"
           />
