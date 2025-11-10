@@ -1,9 +1,12 @@
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/Context/AuthContext";
 
 const AddModel = () => {
   const axiosPublic = useAxiosSecure();
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleAddModel = async (e) => {
     e.preventDefault();
@@ -11,22 +14,22 @@ const AddModel = () => {
     const name = form.name.value;
     const framework = form.framework.value;
     const useCase = form.useCase.value;
-    const dataSet = form.dataSet.value;
+    const dataset = form.dataSet.value;
     const description = form.description.value;
     const imageURL = form.imageURL.value;
-    const email = form.email.value;
+    const createdBy = form.email.value;
     const createdAt = form.createdAt.value;
-    const purChased = form.purChased.value;
+    const purchased = form.purChased.value;
     const addModelInfo = {
       name,
       framework,
       useCase,
-      dataSet,
+      dataset,
       description,
       imageURL,
-      email,
+      createdBy,
       createdAt,
-      purChased,
+      purchased,
     };
     const data = await axiosPublic.post("/addModel", { addModelInfo });
     if (data.data.insertedId) {
@@ -124,6 +127,8 @@ const AddModel = () => {
             <input
               type="email"
               name="email"
+              defaultValue={user.email}
+              readOnly
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="user@example.com"
             />

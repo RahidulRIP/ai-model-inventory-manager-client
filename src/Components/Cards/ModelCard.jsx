@@ -1,5 +1,7 @@
+import { Link } from "react-router";
+
 const ModelCard = ({ data, allModelsPath }) => {
-  const { image, framework, name, description, useCase } = data;
+  const { image, framework, name, description, useCase, _id } = data;
 
   return (
     <div className="relative group  bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-3xl p-[2px] shadow-lg hover:shadow-2xl transition duration-1000 ease-out hover:scale-105">
@@ -23,12 +25,20 @@ const ModelCard = ({ data, allModelsPath }) => {
             {description}
           </p>
           {allModelsPath && (
-            <p className="text-sm text-gray-600 mt-1 line-clamp-3">{useCase}</p>
+            <p className="text-sm text-gray-600 mt-1 line-clamp-3">
+              <span className="text-lg font-semibold text-black">
+                Use_Case :
+              </span>{" "}
+              {useCase}
+            </p>
           )}
           <div className="card-actions justify-end mt-5">
-            <button className="btn btn-sm bg-gradient-to-r from-indigo-500 to-pink-500 text-white border-none hover:from-pink-500 hover:to-indigo-500 hover:scale-105 transition-transform duration-1000">
+            <Link
+              to={`/modelCardDetails/${_id}`}
+              className="btn btn-sm bg-gradient-to-r from-indigo-500 to-pink-500 text-white border-none hover:from-pink-500 hover:to-indigo-500 hover:scale-105 transition-transform duration-1000"
+            >
               View Details
-            </button>
+            </Link>
           </div>
         </div>
       </div>

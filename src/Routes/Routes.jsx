@@ -8,6 +8,7 @@ import Banner from "../Components/Home/Banner/Banner";
 import AllModels from "../Pages/AllModels/AllModels";
 import AddModel from "../Pages/AddModel/AddModel";
 import PrivateRoute from "./PrivateRoute";
+import ModelCardDetails from "../Components/Cards/ModelCardDetails";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,16 @@ const router = createBrowserRouter([
             <AddModel />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "modelCardDetails/:id",
+        element: (
+          <PrivateRoute>
+            <ModelCardDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:7000/models/${params?.id}`),
       },
     ],
   },
