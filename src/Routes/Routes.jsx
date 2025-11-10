@@ -7,6 +7,7 @@ import RoutesErrorPage from "../Components/Error/RouterErrorPage";
 import Banner from "../Components/Home/Banner/Banner";
 import AllModels from "../Pages/AllModels/AllModels";
 import AddModel from "../Pages/AddModel/AddModel";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
       },
       {
         path: "addModel",
-        element: <AddModel />,
+        element: (
+          <PrivateRoute>
+            <AddModel />
+          </PrivateRoute>
+        ),
       },
     ],
   },

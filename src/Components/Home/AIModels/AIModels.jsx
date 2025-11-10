@@ -7,7 +7,6 @@ import Loader from "../../Shared/Loader";
 const AIModels = () => {
   const [modelsData, setModelsData] = useState();
   const [loading, setLoading] = useState(true);
-  console.log(modelsData);
   const axiosPublic = useAxiosSecure();
 
   useEffect(() => {

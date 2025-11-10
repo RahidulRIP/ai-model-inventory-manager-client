@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 const AllModels = () => {
   const [modelsData, setModelsData] = useState();
   const [loading, setLoading] = useState(true);
-  console.log(modelsData);
   const axiosPublic = useAxiosSecure();
   const location = useLocation();
   const allModelsPath = location.pathname;

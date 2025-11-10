@@ -1,8 +1,10 @@
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useNavigate } from "react-router";
 
 const AddModel = () => {
   const axiosPublic = useAxiosSecure();
+  const navigate = useNavigate();
   const handleAddModel = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -29,6 +31,7 @@ const AddModel = () => {
     const data = await axiosPublic.post("/addModel", { addModelInfo });
     if (data.data.insertedId) {
       toast.success("AI Model Data Add successfully!");
+      navigate("/allModels");
     }
   };
 

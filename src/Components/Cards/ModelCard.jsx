@@ -1,5 +1,4 @@
 const ModelCard = ({ data, allModelsPath }) => {
-  console.log(data);
   const { image, framework, name, description, useCase } = data;
 
   return (

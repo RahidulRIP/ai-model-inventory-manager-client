@@ -92,7 +92,7 @@ const Navbar = () => {
 
                 {user && clickProfile && (
                   <div className="absolute right-0 mt-3 w-fit bg-base-200 rounded-xl shadow-lg border border-base-300 z-50 animate-fadeIn">
-                    <div className="p-4 space-y-3 ">
+                    <div className="p-4 space-y-3 w-64">
                       <h3 className="font-semibold text-base text-primary">
                         {user?.displayName}
                       </h3>

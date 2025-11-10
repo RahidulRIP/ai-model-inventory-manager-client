@@ -11,7 +11,6 @@ const SignIn = () => {
   const [eyes, setEyes] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-
   const { signInUser, googleSignIn } = use(AuthContext);
   const location = useLocation();
   const goTo = location?.state ? location?.state : "/";
