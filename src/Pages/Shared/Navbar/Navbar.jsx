@@ -18,6 +18,9 @@ const Navbar = () => {
       <li>
         <NavLink to={"/allModels"}>All Models</NavLink>
       </li>
+      <li>
+        <NavLink to={"/addModel"}>Add Model</NavLink>
+      </li>
     </>
   );
   const handleLogout = () => {

@@ -60,6 +60,7 @@ const SignUp = () => {
           });
       })
       .catch((err) => {
+        toast.error("Email Already In Use");
         setError(err.message);
       });
   };

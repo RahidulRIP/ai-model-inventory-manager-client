@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Providers/Context/AuthContext";
 import toast from "react-hot-toast";
 import GoogleSignIn from "../Shared/GoogleSignIn/GoogleSignIn";
+import { motion } from "framer-motion";
 
 const SignIn = () => {
   const [eyes, setEyes] = useState(false);
@@ -32,6 +33,7 @@ const SignIn = () => {
         navigate(goTo);
       })
       .catch(() => {
+        toast.error("Invalid Email Or Password");
         setError("Invalid email or password. Please try again.");
       });
   };
@@ -53,10 +55,21 @@ const SignIn = () => {
       <title>SignIn || SwapPals</title>
       <div className=" flex items-center justify-center my-8 md:my-20 p-3.5">
         <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow">
-          <h2 className="text-2xl font-bold text-center text-gray-800">
-            Login your account
-          </h2>
-          <form onSubmit={handleSignIn} className="space-y-4">
+          <motion.h2
+            initial={{ y: -30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            className="text-xl md:text-3xl font-bold text-center text-gray-800"
+          >
+            Login to AI Model Inventory Manager
+          </motion.h2>
+          <motion.form
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            onSubmit={handleSignIn}
+            className="space-y-4"
+          >
             {/* email  */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
@@ -114,7 +127,7 @@ const SignIn = () => {
             >
               Login
             </button>
-          </form>
+          </motion.form>
           {/* google sign in */}
           <div>
             <GoogleSignIn handleGoogleSignIn={handleGoogleSignIn} />

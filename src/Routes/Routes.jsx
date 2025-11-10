@@ -6,6 +6,7 @@ import SignIn from "../Pages/SignIn/SignIn";
 import RoutesErrorPage from "../Components/Error/RouterErrorPage";
 import Banner from "../Components/Home/Banner/Banner";
 import AllModels from "../Pages/AllModels/AllModels";
+import AddModel from "../Pages/AddModel/AddModel";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "allModels",
         Component: AllModels,
+      },
+      {
+        path: "addModel",
+        element: <AddModel />,
       },
     ],
   },
