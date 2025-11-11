@@ -25,7 +25,7 @@ const UpdatePage = () => {
     const useCase = form.useCase.value;
     const dataset = form.dataSet.value;
     const description = form.description.value;
-    const imageURL = form.imageURL.value;
+    const image = form.image.value;
     const createdBy = form.email.value;
     const createdAt = form.createdAt.value;
     const purchased = parseInt(form.purChased.value);
@@ -35,7 +35,7 @@ const UpdatePage = () => {
       useCase,
       dataset,
       description,
-      imageURL,
+      image,
       createdBy,
       createdAt,
       purchased,
@@ -148,8 +148,8 @@ const UpdatePage = () => {
             </label>
             <input
               type="url"
-              name="imageURL"
-              defaultValue={detailsData?.imageURL}
+              name="image"
+              defaultValue={detailsData?.image}
               required
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="https://..."

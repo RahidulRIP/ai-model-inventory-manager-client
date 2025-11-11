@@ -3,11 +3,13 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/Context/AuthContext";
+import Loader from "../../Components/Shared/Loader";
 
 const AddModel = () => {
   const axiosPublic = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const handleAddModel = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -16,7 +18,7 @@ const AddModel = () => {
     const useCase = form.useCase.value;
     const dataset = form.dataSet.value;
     const description = form.description.value;
-    const image = form.imageURL.value;
+    const image = form.image.value;
     const createdBy = form.email.value;
     const createdAt = form.createdAt.value;
     const purchased = parseInt(form.purChased.value);
@@ -114,7 +116,7 @@ const AddModel = () => {
             </label>
             <input
               type="url"
-              name="imageURL"
+              name="image"
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="https://..."
             />

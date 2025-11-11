@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import {
   FaCalendarAlt,
   FaUser,
@@ -12,6 +12,7 @@ import { AuthContext } from "../../Providers/Context/AuthContext";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Loader from "../Shared/Loader";
+import Swal from "sweetalert2";
 
 const ModelCardDetails = () => {
   const [detailsData, setDetailsData] = useState({});
@@ -20,6 +21,7 @@ const ModelCardDetails = () => {
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosSecure();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axiosPublic
@@ -48,6 +50,31 @@ const ModelCardDetails = () => {
       setRefetch(!refetch);
       toast.success("Purchased Successful");
     }
+  };
+
+  const handleAiModelDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/deleteModel/${id}`).then((res) => {
+          if (res?.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            navigate("/allModels");
+          }
+        });
+      }
+    });
   };
 
   if (leading) {
@@ -135,7 +162,7 @@ const ModelCardDetails = () => {
               </button>
             )}
 
-            {user?.email === detailsData?.createdBy ? (
+            {user?.email === detailsData?.createdBy && (
               <div className="grid grid-cols-2 gap-10  mt-8">
                 <Link
                   to={`/updateAiModelData/${detailsData?._id}`}
@@ -143,12 +170,13 @@ const ModelCardDetails = () => {
                 >
                   Edit
                 </Link>
-                <Link className="w-full btn btn-dash transform hover:scale-105 transition-transform duration-700 rounded-full px-6 text-lg">
+                <Link
+                  onClick={() => handleAiModelDelete(detailsData?._id)}
+                  className="w-full btn btn-dash transform hover:scale-105 transition-transform duration-700 rounded-full px-6 text-lg"
+                >
                   Delete
                 </Link>
               </div>
-            ) : (
-              ""
             )}
           </div>
         </div>
