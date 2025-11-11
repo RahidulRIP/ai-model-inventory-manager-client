@@ -1,26 +1,23 @@
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useParams } from "react-router";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Providers/Context/AuthContext";
+import { useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
 import Loader from "../../Components/Shared/Loader";
+import toast from "react-hot-toast";
 
 const UpdatePage = () => {
   const [detailsData, setDetailsData] = useState({});
   const [leading, setLoading] = useState(true);
   const { id } = useParams();
   const axiosPublic = useAxiosSecure();
-  const { user } = useContext(AuthContext);
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axiosPublic
       .get(`http://localhost:7000/models/${id}`)
       .then((res) => setDetailsData(res?.data));
-
-    setLoading(false);
   }, [id, axiosPublic]);
 
-  const handleAddModel = async (e) => {
+  const handleUpdateModelData = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -43,19 +40,35 @@ const UpdatePage = () => {
       createdAt,
       purchased,
     };
-    console.log(addModelInfo);
+
+    try {
+      const data = await axiosPublic.patch(
+        `/updateModelData/${detailsData?._id}`,
+        addModelInfo
+      );
+
+      if (data?.data?.modifiedCount) {
+        toast.success("Update Successful!");
+      }
+      navigate(`/modelCardDetails/${detailsData?._id}`);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+
+    if (leading) {
+      return <Loader />;
+    }
   };
 
-  if (leading) {
-    return <Loader />;
-  }
   return (
     <div className="my-[var(--section-gap)] max-w-3xl mx-auto p-8 bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-lg border border-gray-100">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
         Update AI Model Data
       </h2>
 
-      <form onSubmit={handleAddModel} className="space-y-8">
+      <form onSubmit={handleUpdateModelData} className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-semibold mb-2 text-gray-700">
@@ -65,6 +78,7 @@ const UpdatePage = () => {
               type="text"
               name="name"
               defaultValue={detailsData?.name}
+              required
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="name"
             />
@@ -77,6 +91,8 @@ const UpdatePage = () => {
             <input
               type="text"
               name="framework"
+              defaultValue={detailsData?.framework}
+              required
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="framework"
             />
@@ -89,6 +105,8 @@ const UpdatePage = () => {
             <input
               type="text"
               name="useCase"
+              defaultValue={detailsData?.useCase}
+              required
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="use case"
             />
@@ -101,6 +119,8 @@ const UpdatePage = () => {
             <input
               type="text"
               name="dataSet"
+              defaultValue={detailsData?.dataset}
+              required
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="dataset"
             />
@@ -113,6 +133,8 @@ const UpdatePage = () => {
           </label>
           <textarea
             name="description"
+            defaultValue={detailsData?.description}
+            required
             rows={5}
             className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
             placeholder="Describe the model..."
@@ -127,6 +149,8 @@ const UpdatePage = () => {
             <input
               type="url"
               name="imageURL"
+              defaultValue={detailsData?.imageURL}
+              required
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="https://..."
             />
@@ -139,7 +163,7 @@ const UpdatePage = () => {
             <input
               type="email"
               name="email"
-              defaultValue={user?.email}
+              defaultValue={detailsData?.createdBy}
               readOnly
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
               placeholder="user@example.com"
@@ -153,6 +177,8 @@ const UpdatePage = () => {
             <input
               type="date"
               name="createdAt"
+              defaultValue={detailsData?.createdAt}
+              readOnly
               className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 focus:outline-none"
             />
           </div>
@@ -165,8 +191,9 @@ const UpdatePage = () => {
           <input
             type="number"
             name="purChased"
-            defaultValue={0}
-            readOnly
+            required
+            min={0}
+            defaultValue={detailsData?.purchased}
             className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
             placeholder="number"
           />
