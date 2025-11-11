@@ -6,7 +6,7 @@ const ModelCard = ({ data, allModelsPath }) => {
   return (
     <div className="relative group  bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-3xl p-[2px] shadow-lg hover:shadow-2xl transition duration-1000 ease-out hover:scale-105">
       <div className="card bg-base-100 rounded-3xl overflow-hidden h-full">
-        <figure className="relative overflow-hidden p-2.5">
+        <figure className="relative h-3/4 rounded-lg overflow-hidden p-2.5">
           <img
             src={image}
             alt="GPT-4 Logo"

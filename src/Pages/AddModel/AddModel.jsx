@@ -16,7 +16,7 @@ const AddModel = () => {
     const useCase = form.useCase.value;
     const dataset = form.dataSet.value;
     const description = form.description.value;
-    const imageURL = form.imageURL.value;
+    const image = form.imageURL.value;
     const createdBy = form.email.value;
     const createdAt = form.createdAt.value;
     const purchased = parseInt(form.purChased.value);
@@ -26,7 +26,7 @@ const AddModel = () => {
       useCase,
       dataset,
       description,
-      imageURL,
+      image,
       createdBy,
       createdAt,
       purchased,

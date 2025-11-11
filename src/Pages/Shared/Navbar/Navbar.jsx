@@ -18,9 +18,21 @@ const Navbar = () => {
       <li>
         <NavLink to={"/allModels"}>All Models</NavLink>
       </li>
-      <li>
-        <NavLink to={"/addModel"}>Add Model</NavLink>
-      </li>
+      {user?.email && (
+        <>
+          <li>
+            <NavLink to={"/addModel"}>Add Model</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/myModelsPage"}>My Models Page</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/myModelsPurchasePage"}>
+              My Model Purchase Page
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   const handleLogout = () => {

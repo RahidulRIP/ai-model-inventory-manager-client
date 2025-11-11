@@ -10,6 +10,8 @@ import AddModel from "../Pages/AddModel/AddModel";
 import PrivateRoute from "./PrivateRoute";
 import ModelCardDetails from "../Components/Cards/ModelCardDetails";
 import UpdatePage from "../Pages/UpdatePage/UpdatePage";
+import MyModelsPage from "../Pages/MyModelsPage/MyModelsPage";
+import MyModelsPurchasePage from "../Pages/MyModelsPurchasePage/MyModelsPurchasePage";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +52,27 @@ const router = createBrowserRouter([
       },
       {
         path: "updateAiModelData/:id",
-        element: <UpdatePage />,
+        element: (
+          <PrivateRoute>
+            <UpdatePage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "myModelsPage",
+        element: (
+          <PrivateRoute>
+            <MyModelsPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "myModelsPurchasePage",
+        element: (
+          <PrivateRoute>
+            <MyModelsPurchasePage />
+          </PrivateRoute>
+        ),
       },
     ],
   },
