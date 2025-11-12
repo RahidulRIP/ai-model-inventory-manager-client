@@ -4,15 +4,14 @@ import { Link } from "react-router";
 const SwiperInfo = ({ image, title }) => {
   return (
     <motion.div
-      // initial={{ scale: 1 }}
       animate={{
-        // scale: [1, 1.2, 1],
+        scale: [1, 1.2, 1],
         opacity: [0.9, 1, 0.9],
       }}
       transition={{
         duration: 10,
         ease: "easeInOut",
-        // repeat: Infinity,
+        repeat: Infinity,
       }}
     >
       <div
