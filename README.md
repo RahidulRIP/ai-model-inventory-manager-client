@@ -1,16 +1,37 @@
-# React + Vite
+# Project Name: ModelHub - AI Model Inventory Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Live URL: https://ai-models-inventory-c0035.web.app/
 
-Currently, two official plugins are available:
+# Purpose:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a web-based platform where users can manage and organize AI models efficiently. Whether it’s image recognition, natural language processing, recommendation systems, or generative AI models, users can easily add, view, edit, and delete model entries with essential details like model name, framework, dataset, and use case. The platform ensures smooth management, secure access, and a responsive experience for AI developers, researchers, and learners.
 
-## React Compiler
+# Description
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+AiCraft is your central hub for managing AI model information with ease. From TensorFlow and PyTorch frameworks to NLP and computer vision use cases, organize and track your AI models in one place. Add new models, update existing ones, and maintain an inventory with detailed metadata such as dataset, framework, and purpose. ModelHub simplifies how AI assets are documented and accessed—making it ideal for developers, students, and researchers looking to streamline their AI workflow securely and efficiently.
 
-## Expanding the ESLint configuration
+# Primary Targets
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Centralized AI Model Management–Allow users to store and organize AI models in one place for easy access and maintenance.
+2. Efficient CRUD Operations–Enable users to add, edit, delete, and view models effortlessly.
+3. Secure Authentication–Protect user data and model information through Firebase-based authentication.
+4. Real-World Application Learning–Help students and developers understand how AI model management systems work in professional environments.
+5. Responsive and User-Friendly Design–Ensure the platform works seamlessly across all devices with a clean and modern interface.
+
+# This project is powered by a combination of modern web tools and libraries:
+
+1. HTML5
+2. CSS3
+3. Tailwind
+4. DaisyUI
+5. React
+6. React Router
+7. React DOM
+8. React Icons
+9. React-hot-toast
+10. Motion
+11. Swiper
+12. vercel (for server site)
+13. Firebase
+14. MongoDB
+15. JavaScript (ES6+)
