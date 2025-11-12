@@ -1,12 +1,13 @@
 import toast from "react-hot-toast";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+// import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/Context/AuthContext";
-import Loader from "../../Components/Shared/Loader";
+import UseAxiosTokenSecure from "../../Hooks/UseAxiosTokenSecure";
 
 const AddModel = () => {
-  const axiosPublic = useAxiosSecure();
+  // const axiosPublic = useAxiosSecure();
+  const axiosPublic = UseAxiosTokenSecure();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 

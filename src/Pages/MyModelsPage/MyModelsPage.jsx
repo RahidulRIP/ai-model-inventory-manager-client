@@ -1,18 +1,19 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/Context/AuthContext";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Loader from "../../Components/Shared/Loader";
 import Container from "../../Components/Container/Container";
 import { Link } from "react-router";
+import UseAxiosTokenSecure from "../../Hooks/UseAxiosTokenSecure";
 
 const MyModelsPage = () => {
   const [modelsData, setModelsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
-  const axiosPublic = useAxiosSecure();
+  // const axiosPublic = useAxiosSecure();
+  const axiosSecure = UseAxiosTokenSecure();
   useEffect(() => {
     try {
-      axiosPublic(`/models/specificsModals?email=${user?.email}`).then((res) =>
+      axiosSecure(`/models/specificsModals?email=${user?.email}`).then((res) =>
         setModelsData(res.data)
       );
     } catch (err) {
@@ -20,7 +21,7 @@ const MyModelsPage = () => {
     } finally {
       setLoading(false);
     }
-  }, [user?.email, axiosPublic]);
+  }, [user?.email, axiosSecure]);
 
   if (loading) {
     return <Loader />;
