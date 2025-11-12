@@ -12,9 +12,7 @@ const UpdatePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axiosPublic
-      .get(`http://localhost:7000/models/${id}`)
-      .then((res) => setDetailsData(res?.data));
+    axiosPublic.get(`/models/${id}`).then((res) => setDetailsData(res?.data));
   }, [id, axiosPublic]);
 
   const handleUpdateModelData = async (e) => {

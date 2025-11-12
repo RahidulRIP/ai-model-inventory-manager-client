@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../Providers/Context/AuthContext";
 
 const axiosTokenSecure = axios.create({
-  baseURL: "http://localhost:7000",
+  baseURL: "https://al-model-inventory-manager-server.vercel.app",
 });
 
 const UseAxiosTokenSecure = () => {

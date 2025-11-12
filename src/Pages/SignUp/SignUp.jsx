@@ -80,7 +80,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <title>SignUp || SwapPals</title>
+      <title>SignUp || Ai-Craft</title>
       <div>
         <div className="flex items-center justify-center my-12 md:my-28 p-3.5">
           <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow">

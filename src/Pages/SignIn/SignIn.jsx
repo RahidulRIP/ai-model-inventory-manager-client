@@ -50,7 +50,7 @@ const SignIn = () => {
 
   return (
     <div>
-      <title>SignIn || SwapPals</title>
+      <title>SignIn || Ai-Craft</title>
       <div className=" flex items-center justify-center my-8 md:my-20 p-3.5">
         <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow">
           <motion.h2

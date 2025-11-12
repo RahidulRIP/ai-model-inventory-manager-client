@@ -24,9 +24,7 @@ const ModelCardDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axiosPublic
-      .get(`http://localhost:7000/models/${id}`)
-      .then((res) => setDetailsData(res?.data));
+    axiosPublic.get(`/models/${id}`).then((res) => setDetailsData(res?.data));
 
     setLoading(false);
   }, [axiosPublic, id, refetch]);
