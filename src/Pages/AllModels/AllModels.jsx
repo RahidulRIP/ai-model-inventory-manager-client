@@ -8,10 +8,8 @@ import { motion } from "framer-motion";
 import SearchNotFound from "../../Components/Error/SearchNotFound";
 
 const AllModels = () => {
-  const [modelsData, setModelsData] = useState();
+  const [modelsData, setModelsData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  // const [filterData, setFilterData] = useState("");
-  // console.log(filterData);
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosSecure();
   const location = useLocation();
@@ -20,7 +18,7 @@ const AllModels = () => {
     const fetchModels = async () => {
       try {
         const data = await axiosPublic.get("/models");
-        setModelsData(data.data);
+        setModelsData(data?.data);
       } catch (err) {
         console.log(err);
       } finally {
@@ -37,7 +35,7 @@ const AllModels = () => {
       const searchData = await axiosPublic.get(
         `/models/search?value=${searchValue}`
       );
-      setModelsData(searchData.data);
+      setModelsData(searchData?.data);
     } catch (err) {
       console.log(err);
     } finally {
@@ -65,7 +63,7 @@ const AllModels = () => {
     return <Loader />;
   }
   return (
-    <div className="">
+    <div className="mb-8 md:mb-24">
       <Container>
         <div className="flex flex-col items-center">
           <motion.h2

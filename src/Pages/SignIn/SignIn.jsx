@@ -26,7 +26,6 @@ const SignIn = () => {
     // create user
     signInUser(userEmail, userPassword)
       .then(() => {
-        // console.log(result.user);
         toast.success("Sign In successful!");
         form.reset();
         navigate(goTo);

@@ -35,6 +35,9 @@ const SignUp = () => {
       setError(
         "Must contain a capital, a small letter, a number, and 6+ chars."
       );
+      toast.error(
+        "Must contain a capital, a small letter, a number, and 6+ chars."
+      );
       return;
     }
 
@@ -42,8 +45,6 @@ const SignUp = () => {
     // create user
     createUser(userEmail, userPassword)
       .then(() => {
-        // console.log(result.user);
-
         // update profile
         const profileInfo = {
           displayName: userName,
@@ -69,7 +70,6 @@ const SignUp = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then(() => {
-        // console.log(result.user);
         toast.success("Sign In successful!");
         navigate("/");
       })

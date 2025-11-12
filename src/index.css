@@ -34,3 +34,7 @@
     --section-gap: 36px;
   }
 }
+
+.active {
+  color: blue;
+}

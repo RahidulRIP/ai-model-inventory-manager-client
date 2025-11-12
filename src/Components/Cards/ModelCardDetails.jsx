@@ -66,9 +66,10 @@ const ModelCardDetails = () => {
         axiosPublic.delete(`/deleteModel/${id}`).then((res) => {
           if (res?.data.deletedCount > 0) {
             Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
               icon: "success",
+              title: "Your Model has been deleted",
+              showConfirmButton: false,
+              timer: 1500,
             });
             navigate("/allModels");
           }

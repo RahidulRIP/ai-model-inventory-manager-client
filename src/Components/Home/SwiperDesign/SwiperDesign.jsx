@@ -13,6 +13,9 @@ import banner_1 from "../../../assets/Banner_1.jpeg";
 import banner_2 from "../../../assets/Banner_2.jpeg";
 import banner_3 from "../../../assets/Banner_3.jpeg";
 import banner_4 from "../../../assets/Banner_4.jpeg";
+import banner_5 from "../../../assets/Banner_5.jpeg";
+import banner_6 from "../../../assets/Banner_6.jpeg";
+
 import SwiperInfo from "./SwiperInfo";
 
 const SwiperDesign = () => {
@@ -31,19 +34,43 @@ const SwiperDesign = () => {
           clickable: true,
         }}
         modules={[Autoplay, EffectFade, Navigation, Pagination]}
-        className="mySwiper"
+        className="mySwiper rounded-xl"
       >
         <SwiperSlide>
-          <SwiperInfo image={banner_1} />
+          <SwiperInfo
+            image={banner_1}
+            title="Explore the Power of AI — Transform Ideas Into Innovation"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <SwiperInfo image={banner_2} />
+          <SwiperInfo
+            image={banner_2}
+            title={"Accelerate Your AI Journey with Cutting-Edge Models"}
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <SwiperInfo image={banner_3} />
+          <SwiperInfo
+            image={banner_3}
+            title={"Build Faster. Scale Smarter. Innovate Without Limits"}
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <SwiperInfo image={banner_4} />
+          <SwiperInfo
+            image={banner_4}
+            title={"Your All-in-One Platform for Intelligent Solutions"}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <SwiperInfo
+            image={banner_5}
+            title={"Empowering Developers to Create the Future"}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <SwiperInfo
+            image={banner_6}
+            title={"xperience the Future — One Model at a Time"}
+          />
         </SwiperSlide>
       </Swiper>
     </div>

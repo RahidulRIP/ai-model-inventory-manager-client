@@ -2,37 +2,35 @@ import { Link, NavLink } from "react-router";
 import Container from "../../../Components/Container/Container";
 import { TfiMenuAlt } from "react-icons/tfi";
 import logo from "../../../assets/AICraft.png";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/Context/AuthContext";
 import { FaUser } from "react-icons/fa6";
 
 const Navbar = () => {
   const [clickProfile, setClickProfile] = useState(false);
   const { user, signUserOut } = use(AuthContext);
+  const [themeColor, setThemeColor] = useState(true);
 
   const links = (
     <>
       <li>
-        <NavLink>Home</NavLink>
+        <NavLink to={"/"}>HOME</NavLink>
       </li>
       <li>
-        <NavLink to={"/allModels"}>All Models</NavLink>
+        <NavLink to={"/allModels"}>ALL MODELS</NavLink>
       </li>
-      {user?.email && (
-        <>
-          <li>
-            <NavLink to={"/addModel"}>Add Model</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/myModelsPage"}>My Models Page</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/myModelsPurchasePage"}>
-              My Model Purchase Page
-            </NavLink>
-          </li>
-        </>
-      )}
+
+      <>
+        <li>
+          <NavLink to={"/addModel"}>ADD MODEL</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/myModelsPage"}>MY MODELS</NavLink>
+        </li>
+        <li>
+          <NavLink to={"/myModelsPurchasePage"}>MY MODEL PURCHASE</NavLink>
+        </li>
+      </>
     </>
   );
   const handleLogout = () => {
@@ -40,17 +38,33 @@ const Navbar = () => {
       .then(() => {
         setClickProfile(false);
       })
-      .catch(() => {
-        // console.log(err)
-      });
+      .catch(() => {});
+  };
+
+  useEffect(() => {
+    const themeDocument = document.documentElement;
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      return themeDocument.setAttribute("data-theme", `${theme}`);
+    } else {
+      return themeDocument.setAttribute("data-theme", `${theme}`);
+    }
+  }, [localStorage.getItem("theme")]);
+
+  const handleThemeChange = () => {
+    if (themeColor) {
+      localStorage.setItem("theme", "dark");
+    } else {
+      localStorage.setItem("theme", "light");
+    }
   };
 
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div className="bg-base-100 shadow-sm relative">
       <Container>
         <div className="navbar">
           <div className="navbar-start">
-            <div className="dropdown">
+            <div className="dropdown ">
               <div
                 tabIndex={0}
                 role="button"
@@ -60,7 +74,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-40 p-2 shadow text-lg font-medium"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-2xs p-2 shadow  font-medium"
               >
                 {links}
               </ul>
@@ -72,7 +86,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navbar-center hidden lg:flex ">
-            <ul className="menu menu-horizontal px-1 text-lg">{links}</ul>
+            <ul className="menu menu-horizontal px-1 font-medium">{links}</ul>
           </div>
 
           <div className="navbar-end gap-6">
@@ -87,6 +101,22 @@ const Navbar = () => {
                   Login
                 </Link>
               </>
+            )}
+
+            {/* theme  */}
+            {user && (
+              <div>
+                <input
+                  onChange={() => setThemeColor(!themeColor)}
+                  onClick={handleThemeChange}
+                  checked={
+                    localStorage.getItem("theme") === "dark" ? true : false
+                  }
+                  type="checkbox"
+                  value="synthwave"
+                  className="toggle theme-controller absolute top-7.5 right-20"
+                />
+              </div>
             )}
 
             {user && (
@@ -110,10 +140,17 @@ const Navbar = () => {
                       </h3>
                       <h3 className=" text-base font-medium">{user?.email}</h3>
                       <h3>
-                        <Link className="my-button w-full">Model Purchase</Link>
+                        <Link
+                          to={"/myModelsPurchasePage"}
+                          className="my-button w-full"
+                        >
+                          Model Purchase
+                        </Link>
                       </h3>
                       <h3>
-                        <Link className="my-button w-full">Models Page</Link>
+                        <Link to={"/myModelsPage"} className="my-button w-full">
+                          Models Page
+                        </Link>
                       </h3>
                       <hr className="border-base-300" />
                       <button
