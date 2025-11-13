@@ -13,6 +13,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Loader from "../Shared/Loader";
 import Swal from "sweetalert2";
+import UseAxiosTokenSecure from "../../Hooks/UseAxiosTokenSecure";
 
 const ModelCardDetails = () => {
   const [detailsData, setDetailsData] = useState({});
@@ -20,6 +21,7 @@ const ModelCardDetails = () => {
   const [refetch, setRefetch] = useState(false);
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosSecure();
+  const axiosTokenSecure = UseAxiosTokenSecure();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -61,7 +63,7 @@ const ModelCardDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic.delete(`/deleteModel/${id}`).then((res) => {
+        axiosTokenSecure.delete(`/deleteModel/${id}`).then((res) => {
           if (res?.data.deletedCount > 0) {
             Swal.fire({
               icon: "success",

@@ -33,7 +33,7 @@ const AIModels = () => {
           <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-500 bg-clip-text text-transparent">
             Featured AI Models
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-8 md:mt-16 p-2.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 md:gap-10 mt-8 md:mt-16">
             {modelsData.slice(0, 6).map((data) => (
               <ModelCard key={data._id} data={data} />
             ))}

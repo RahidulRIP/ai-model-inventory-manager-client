@@ -34,7 +34,7 @@ const SwiperDesign = () => {
           clickable: true,
         }}
         modules={[Autoplay, EffectFade, Navigation, Pagination]}
-        className="mySwiper rounded-xl"
+        className="mySwiper rounded-sm"
       >
         <SwiperSlide>
           <SwiperInfo

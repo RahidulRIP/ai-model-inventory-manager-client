@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import Loader from "../../Components/Shared/Loader";
 import toast from "react-hot-toast";
+import UseAxiosTokenSecure from "../../Hooks/UseAxiosTokenSecure";
 
 const UpdatePage = () => {
   const [detailsData, setDetailsData] = useState({});
   const [leading, setLoading] = useState(true);
   const { id } = useParams();
   const axiosPublic = useAxiosSecure();
+  const axiosTokenSecure = UseAxiosTokenSecure();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const UpdatePage = () => {
     };
 
     try {
-      const data = await axiosPublic.patch(
+      const data = await axiosTokenSecure.patch(
         `/updateModelData/${detailsData?._id}`,
         addModelInfo
       );

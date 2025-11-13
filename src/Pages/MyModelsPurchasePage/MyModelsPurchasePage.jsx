@@ -25,7 +25,7 @@ const MyModelsPurchasePage = () => {
     return <Loader />;
   }
   return (
-    <div className="">
+    <div className="py-3 md:py-10">
       <Container>
         <div className=" overflow-x-auto">
           <table className="table">

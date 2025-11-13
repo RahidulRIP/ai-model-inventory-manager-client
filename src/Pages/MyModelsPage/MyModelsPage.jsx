@@ -9,7 +9,6 @@ const MyModelsPage = () => {
   const [modelsData, setModelsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
-  // const axiosPublic = useAxiosSecure();
   const axiosSecure = UseAxiosTokenSecure();
   useEffect(() => {
     try {
@@ -27,7 +26,7 @@ const MyModelsPage = () => {
     return <Loader />;
   }
   return (
-    <div className="">
+    <div className="py-3 md:py-10">
       <Container>
         <div className="overflow-x-auto">
           <table className="table">

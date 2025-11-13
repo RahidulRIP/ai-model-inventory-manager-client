@@ -109,7 +109,7 @@ const AllModels = () => {
           <div className="divider"></div>
           <div>
             {modelsData && modelsData.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-x-16 gap-y-10 p-2.5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  md:gap-x-16 gap-y-3.5 md:gap-y-10">
                 {modelsData.map((data) => (
                   <ModelCard
                     key={data._id}
