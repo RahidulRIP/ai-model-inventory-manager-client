@@ -12,6 +12,9 @@ import ModelCardDetails from "../Components/Cards/ModelCardDetails";
 import UpdatePage from "../Pages/UpdatePage/UpdatePage";
 import MyModelsPage from "../Pages/MyModelsPage/MyModelsPage";
 import MyModelsPurchasePage from "../Pages/MyModelsPurchasePage/MyModelsPurchasePage";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Documentation from "../Components/Home/Documentation/Documentation";
+import ContactExpert from "../Components/Home/Documentation/ContactExpert/ContactExpert";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +77,16 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
+      // new add
+      {
+        path: "documentation",
+        Component: Documentation,
+      },
+      {
+        path: "contactExpert",
+        Component: ContactExpert,
+      },
     ],
   },
   {
@@ -84,6 +97,11 @@ const router = createBrowserRouter([
   {
     path: "*",
     Component: RoutesErrorPage,
+  },
+  // dashboard routes
+  {
+    path: "dashboard",
+    element: <DashboardLayout />,
   },
 ]);
 

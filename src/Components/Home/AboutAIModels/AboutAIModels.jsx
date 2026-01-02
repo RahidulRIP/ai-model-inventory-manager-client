@@ -1,14 +1,87 @@
 import { motion } from "framer-motion";
+import {
+  FaBrain,
+  FaLightbulb,
+  FaRocket,
+  FaProjectDiagram,
+  FaExclamationTriangle,
+  FaGlobe,
+} from "react-icons/fa";
+import { Link } from "react-router";
 
 const AboutAIModels = () => {
+  const cards = [
+    {
+      title: "How AI Models Work",
+      icon: <FaBrain className="text-indigo-500" />,
+      points: [
+        "Neural networks mimic the human brain through data processing layers.",
+        "They learn from large datasets to improve performance over time.",
+        "Used for image recognition, speech, and language translation.",
+      ],
+    },
+    {
+      title: "Why They Matter",
+      icon: <FaLightbulb className="text-amber-500" />,
+      points: [
+        "Chatbots enable natural human-like conversations.",
+        "Image Recognition identifies objects and people accurately.",
+        "Medical AI helps diagnose diseases with high efficiency.",
+      ],
+    },
+    {
+      title: "Global Applications",
+      icon: <FaRocket className="text-emerald-500" />,
+      points: [
+        "Autonomous vehicles that navigate complex environments safely.",
+        "Virtual assistants like Siri and Alexa simplify daily tasks.",
+        "Fraud detection systems securing global banking networks.",
+      ],
+    },
+    {
+      title: "Types of AI Models",
+      icon: <FaProjectDiagram className="text-blue-500" />,
+      points: [
+        "Supervised Learning — trained on specifically labeled data.",
+        "Reinforcement Learning — learns through feedback loops.",
+        "Generative Models — creating original text, art, and music.",
+      ],
+    },
+    {
+      title: "Critical Challenges",
+      icon: <FaExclamationTriangle className="text-red-500" />,
+      points: [
+        "Data bias which may lead to unfair or skewed outcomes.",
+        "Explainability — making complex decisions interpretable.",
+        "Energy usage — addressing the carbon footprint of large models.",
+      ],
+    },
+    {
+      title: "The AI Future",
+      icon: <FaGlobe className="text-purple-500" />,
+      points: [
+        "Edge AI — running on-device for maximum speed and privacy.",
+        "Quantum AI — leveraging the power of quantum computing.",
+        "Toward human-like, ethical, and safe intelligence.",
+      ],
+    },
+  ];
+
   return (
-    <section className="bg-gradient-to-b from-gray-50 to-white py-24 px-6 md:px-16 text-gray-800 overflow-hidden">
-      <div className="max-w-5xl mx-auto text-center">
+    <section className="bg-slate-50 md:px-16 text-slate-900 overflow-hidden my-[var(--section-gap)]">
+      <div className="max-w-5xl mx-auto text-center mb-20">
+        <motion.span
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-xs font-black uppercase tracking-[0.3em] text-indigo-600 mb-4 block"
+        >
+          Intelligence Redefined
+        </motion.span>
         <motion.h2
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-500 bg-clip-text mb-6 text-transparent"
+          className="text-4xl md:text-6xl font-black text-slate-900 mb-8 tracking-tight"
         >
           About AI Models
         </motion.h2>
@@ -16,230 +89,68 @@ const AboutAIModels = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-lg md:text-xl text-gray-600 mb-12"
+          className="text-lg md:text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed"
         >
-          AI models are intelligent systems that learn from data, recognize
-          patterns, and make predictions. They power technologies that transform
-          industries and improve human life.
+          AI models are high-performance systems that learn from data, recognize
+          complex patterns, and make high-accuracy predictions.
         </motion.p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        {/* Card 1 */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          initial={{ y: 40 }}
-          whileInView={{ y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl"
-        >
-          <div className="mb-4">
-            <h3 className="text-2xl font-semibold text-indigo-600">
-              How AI Models Work
-            </h3>
-          </div>
-          <div className="flex flex-col gap-3 text-gray-600">
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>
-                Neural networks mimic the human brain through layers that
-                process data.
-              </p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>
-                They learn from large datasets to improve performance over time.
-              </p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>
-                Used for image recognition, speech, and language translation.
-              </p>
-            </div>
-          </div>
-        </motion.div>
+      {/* 
 
-        {/* Card 2 */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl"
-        >
-          <div className="mb-4">
-            <h3 className="text-2xl font-semibold text-indigo-600">
-              Why They Matter
-            </h3>
-          </div>
-          <div className="flex flex-col gap-3 text-gray-600">
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Chatbots — enable natural human-like conversations.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Image Recognition — identifies objects and people.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Recommendation Systems — personalize user experiences.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Medical AI — helps diagnose diseases efficiently.</p>
-            </div>
-          </div>
-        </motion.div>
+[Image of a neural network architecture diagram]
+ */}
 
-        {/* Card 3 */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl"
-        >
-          <div className="mb-4">
-            <h3 className="text-2xl font-semibold text-indigo-600">
-              Applications of AI Models
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+        {cards.map((card, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -10 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="p-8 bg-white rounded-[32px] border border-slate-200 shadow-sm hover:shadow-xl transition-all group"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-2xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-500">
+              {card.icon}
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-4 tracking-tight">
+              {card.title}
             </h3>
-          </div>
-          <div className="flex flex-col gap-3 text-gray-600">
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Autonomous vehicles that navigate safely.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Virtual assistants like Siri and Alexa.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Fraud detection in banking systems.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Creative AI for art, music, and design.</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Card 4 */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl"
-        >
-          <div className="mb-4">
-            <h3 className="text-2xl font-semibold text-indigo-600">
-              Types of AI Models
-            </h3>
-          </div>
-          <div className="flex flex-col gap-3 text-gray-600">
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Supervised Learning — trained on labeled data.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Unsupervised Learning — finds hidden patterns.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Reinforcement Learning — learns by feedback.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Generative Models — create text or images.</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Card 5 */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl"
-        >
-          <div className="mb-4">
-            <h3 className="text-2xl font-semibold text-indigo-600">
-              Challenges in AI
-            </h3>
-          </div>
-          <div className="flex flex-col gap-3 text-gray-600">
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Data bias — may lead to unfair outcomes.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Explainability — hard to interpret decisions.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Ethical concerns — privacy & accountability.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Energy usage — large models require huge power.</p>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Card 6 */}
-        <motion.div
-          whileHover={{ scale: 1.03 }}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl"
-        >
-          <div className="mb-4">
-            <h3 className="text-2xl font-semibold text-indigo-600">
-              The Future of AI Models
-            </h3>
-          </div>
-          <div className="flex flex-col gap-3 text-gray-600">
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Explainable AI (XAI) — more transparent systems.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Edge AI — running on-device for speed & privacy.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Quantum AI — leveraging quantum computing.</p>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-indigo-500">●</span>
-              <p>Toward human-like, ethical intelligence.</p>
-            </div>
-          </div>
-        </motion.div>
+            <ul className="space-y-4">
+              {card.points.map((point, pIndex) => (
+                <li
+                  key={pIndex}
+                  className="flex items-start gap-3 text-sm text-slate-500 leading-relaxed"
+                >
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
       </div>
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.3 }}
-        className="text-center mt-20"
+        className="mt-24 px-4"
       >
-        <p className="text-gray-700 text-lg md:text-xl font-medium mb-6">
-          🌍 AI models are the foundation of the intelligent future —
-          continuously learning, adapting, and improving our world.
-        </p>
-        <button className="mt-2 my-button rounded-lg">
-          Learn More About AI
-        </button>
+        {/* Removed Link from here to fix the stray line issue */}
+        <div className="bg-white border-2 border-slate-900 p-10 rounded-[40px] max-w-4xl mx-auto shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] text-center">
+          <p className="text-slate-900 text-xl md:text-2xl font-bold mb-8 italic">
+            "AI models are the foundation of the intelligent future —
+            continuously learning, adapting, and improving our world."
+          </p>
+
+          <Link to="/documentation" className="inline-block no-underline">
+            <button className="px-10 py-5 rounded-2xl bg-slate-900 text-white font-black text-xs uppercase tracking-[0.25em] transition-all duration-300 hover:bg-indigo-600 active:translate-y-1 shadow-[4px_4px_0px_0px_rgba(79,70,229,0.4)] hover:shadow-none border-none outline-none">
+              Explore Documentation
+            </button>
+          </Link>
+        </div>
       </motion.div>
     </section>
   );

@@ -3,7 +3,7 @@ import SwiperDesign from "../SwiperDesign/SwiperDesign";
 
 const Banner = () => {
   return (
-    <div className="mt-3.5">
+    <div className="pt-3.5">
       <Container>
         <SwiperDesign />
       </Container>

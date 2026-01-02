@@ -19,13 +19,13 @@
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   :root {
-    --section-gap: 80px;
+    --section-gap: 100px;
   }
 }
 
 @media (max-width: 768px) {
   :root {
-    --section-gap: 60px;
+    --section-gap: 70px;
   }
 }
 
@@ -38,3 +38,27 @@
 .active {
   color: blue;
 }
+
+/* Custom Pagination: Long Bars instead of dots */
+.custom-bullet {
+  width: 12px !important;
+  height: 6px !important;
+  border-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  opacity: 1 !important;
+  transition: all 0.4s ease !important;
+}
+
+.custom-bullet.swiper-pagination-bullet-active {
+  width: 40px !important;
+  background: #22d3ee !important; /* cyan-400 */
+}
+
+/* Mobile Bullet Positioning */
+@media (max-width: 768px) {
+  .swiper-pagination {
+    bottom: 20px !important;
+  }
+}
+
+/* className="my-[var(--section-gap)]" */

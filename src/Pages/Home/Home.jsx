@@ -5,11 +5,11 @@ import GetStarted from "../../Components/Home/GetStarted/GetStarted";
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-[#fafafa]">
       <section>
         <Banner />
       </section>
-      <section className="my-[var(--section-gap)]">
+      <section>
         <AIModels />
       </section>
       <section>
