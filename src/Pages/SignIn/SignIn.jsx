@@ -47,7 +47,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] flex items-center justify-center p-6">
+    <div className="min-h-screen bg-base-200 flex items-center justify-center p-6">
       <title>SignIn || Ai-Craft</title>
 
       <div className="w-full max-w-md relative">
@@ -150,7 +150,7 @@ const SignIn = () => {
               type="submit"
               className="w-full bg-slate-900 text-white py-4 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 shadow-[4px_4px_0px_0px_rgba(79,70,229,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
             >
-              Initialize Session <FiArrowRight />
+              Sign in <FiArrowRight />
             </button>
           </motion.form>
 

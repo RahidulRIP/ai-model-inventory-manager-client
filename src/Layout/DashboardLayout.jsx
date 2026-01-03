@@ -197,7 +197,6 @@ const DashboardLayout = () => {
               <div className="h-10 w-[1px] bg-slate-200 mx-2" />
 
               <div
-                onClick={handleLogout}
                 className="flex items-center gap-3 cursor-pointer group relative"
                 title="Click to Logout"
               >
@@ -211,7 +210,10 @@ const DashboardLayout = () => {
                       : "Premium Member"}
                   </p>
                 </div>
-                <div className="relative w-11 h-11 rounded-2xl bg-indigo-100 border-2 border-white shadow-md overflow-hidden transition-transform group-hover:scale-105">
+                <div
+                  onClick={handleLogout}
+                  className="relative w-11 h-11 rounded-2xl bg-indigo-100 border-2 border-white shadow-md overflow-hidden transition-transform group-hover:scale-105"
+                >
                   <img
                     src={
                       user?.photoURL ||

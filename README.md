@@ -1,3 +1,14 @@
+Demo credentials:
+https://docs.google.com/spreadsheets/d/1oyfn-WobEdNtmcicnzEv7mV68CL4PTqPkB4MNSRkj0A/edit?usp=sharing
+
+or
+
+User email: mdmonjumia@gmail.com
+User password: Monju123#
+
+Admin email: rahidulislam@gmail.com
+Admin password: Rahidul123#
+
 # Project Name: ModelHub - AI Model Inventory Manager
 
 # Live URL: https://ai-models-inventory-c0035.web.app/

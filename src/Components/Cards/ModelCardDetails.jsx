@@ -97,7 +97,7 @@ const ModelCardDetails = () => {
   const isOwner = user?.email === detailsData?.createdBy;
 
   return (
-    <div className="bg-[#fafafa] min-h-screen py-20">
+    <div className="bg-base-200 min-h-screen py-20">
       <Container>
         <div className="max-w-5xl mx-auto">
           {/* 1. Header Navigation */}

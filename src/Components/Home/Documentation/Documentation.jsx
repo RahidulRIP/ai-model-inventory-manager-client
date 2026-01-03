@@ -41,14 +41,14 @@ const Documentation = () => {
   };
 
   return (
-    <div className="bg-[#fafafa] min-h-screen py-12 md:py-24 border-b-2 border-gray-300">
+    <div className="bg-base-200 min-h-screen py-12 md:py-24 border-b-2 border-gray-300">
       <Container>
         {/* Header Section */}
         <div className="mb-10 md:mb-16 border-b border-slate-100 pb-8 md:pb-10 px-4 md:px-0">
           <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600">
             Knowledge Base
           </span>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mt-4 tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-600 mt-4 tracking-tight">
             Technical <br className="block md:hidden" /> Documentation
           </h1>
           <p className="text-slate-500 mt-4 text-base md:text-lg max-w-2xl font-medium leading-relaxed">
@@ -70,7 +70,7 @@ const Documentation = () => {
                     ${
                       activeTab === key
                         ? "bg-slate-900 text-white border-slate-900 shadow-xl"
-                        : "text-slate-500 bg-white border-transparent hover:bg-slate-50 hover:text-slate-900"
+                        : "text-slate-500 bg-white border-transparent hover:bg-slate-50 hover:text-gray-500"
                     }`}
                 >
                   <span
@@ -104,7 +104,7 @@ const Documentation = () => {
                   {Object.keys(sections).indexOf(activeTab) + 1}
                 </div>
 
-                <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-6 tracking-tight">
+                <h2 className="text-2xl md:text-4xl font-black text-gray-600 mb-6 tracking-tight">
                   {sections[activeTab].title}
                 </h2>
 
@@ -116,7 +116,7 @@ const Documentation = () => {
                 <div className="mt-auto pt-10 border-t border-slate-200">
                   <div className="bg-white p-5 md:p-8 rounded-2xl border border-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                     <div className="max-w-md">
-                      <h4 className="font-bold text-slate-900 text-lg">
+                      <h4 className="font-bold text-gray-500 text-lg">
                         Need further help?
                       </h4>
                       <p className="text-sm text-slate-500 mt-1 font-medium">

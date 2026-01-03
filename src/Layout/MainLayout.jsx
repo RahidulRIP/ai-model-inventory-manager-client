@@ -18,7 +18,7 @@ const MainLayout = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-base-100 text-base-content">
       <Navbar />
       <div className="flex-1 p-2.5 md:p-0">
         <Outlet />

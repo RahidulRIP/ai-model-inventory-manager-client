@@ -20,6 +20,13 @@ import UpgradeCard from "../Dashboard/Components/UpgradeCard";
 import MyProfile from "../Dashboard/Components/MyProfile";
 import Benchmarks from "../Pages/Benchmarks/Benchmarks";
 import Docs from "../Pages/Docs/Docs";
+import NeuralBranding from "../Pages/Shared/Footer/Components/NeuralBranding";
+import Architecture from "../Pages/Shared/Footer/Components/Architecture";
+import MarketAnalysis from "../Pages/Shared/Footer/Components/MarketAnalysis";
+import CareerNode from "../Pages/Shared/Footer/Components/CareerNode";
+import TermsOfProtocol from "../Pages/Shared/Footer/Components/TermsOfProtocol";
+import PrivacyEncryption from "../Pages/Shared/Footer/Components/PrivacyEncryption";
+import CookiePolicy from "../Pages/Shared/Footer/Components/CookiePolicy";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +79,35 @@ const router = createBrowserRouter([
       {
         path: "/docs",
         element: <Docs />,
+      },
+      // footer
+      {
+        path: "neural-branding",
+        Component: NeuralBranding,
+      },
+      {
+        path: "architecture",
+        Component: Architecture,
+      },
+      {
+        path: "market-analysis",
+        Component: MarketAnalysis,
+      },
+      {
+        path: "career-node",
+        Component: CareerNode,
+      },
+      {
+        path: "terms-protocol",
+        Component: TermsOfProtocol,
+      },
+      {
+        path: "privacy-encryption",
+        Component: PrivacyEncryption,
+      },
+      {
+        path: "cookie-policy",
+        Component: CookiePolicy,
       },
     ],
   },

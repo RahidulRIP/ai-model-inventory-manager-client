@@ -68,7 +68,7 @@ const AboutAIModels = () => {
   ];
 
   return (
-    <section className="bg-slate-50 md:px-16 text-slate-900 overflow-hidden my-[var(--section-gap)]">
+    <section className="md:px-16 text-slate-900 overflow-hidden my-[var(--section-gap)] p-2.5 md:p-12">
       <div className="max-w-5xl mx-auto text-center mb-20">
         <motion.span
           initial={{ opacity: 0 }}
@@ -81,7 +81,7 @@ const AboutAIModels = () => {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-black text-slate-900 mb-8 tracking-tight"
+          className="text-4xl md:text-6xl font-black text-gray-500 mb-8 tracking-tight"
         >
           About AI Models
         </motion.h2>

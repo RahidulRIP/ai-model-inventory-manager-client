@@ -9,13 +9,9 @@ import {
   RiDashboard3Line,
   RiMoonLine,
   RiSunLine,
-  RiUserLine,
-  RiShoppingBag3Line,
   RiHome4Line,
   RiRobot2Line,
   RiAddCircleLine,
-  RiStackLine,
-  RiTimeLine,
 } from "react-icons/ri";
 import { FiActivity, FiBookOpen } from "react-icons/fi";
 
@@ -36,9 +32,17 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Theme Logic
+  //  This is your current logic - it's "correct" but needs to target the right place
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
+    const root = window.document.documentElement;
+    root.setAttribute("data-theme", theme);
+
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+
     localStorage.setItem("theme", theme);
   }, [theme]);
 
@@ -80,6 +84,13 @@ const Navbar = () => {
         <span>DOCS</span>
         <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-[.active]:w-full"></span>
       </NavLink>
+
+      {user && (
+        <NavLink to="/dashboard/addModel" className={navLinkClasses}>
+          <RiAddCircleLine size={18} />
+          <span>ADD MODEL</span>
+        </NavLink>
+      )}
     </>
   );
 
@@ -101,23 +112,21 @@ const Navbar = () => {
               </ul>
             </div>
 
-            {/* Professional Brand Section - Maximum Visibility */}
             <Link to="/" className="flex items-center gap-5 group">
-              {/* 1. THE LOGO: Clean, no-nonsense sizing */}
+              {/* LOGO*/}
+
               <div className="relative flex-shrink-0">
                 <img
-                  className="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="h-10 w-auto object-contain transition-transform duration-500 group-hover:scale-105 rounded-sm"
                   src={logo}
                   alt="AICraft"
                 />
               </div>
 
-              {/* 2. THE DIVIDER: Minimalist & Clean */}
               <div className="h-6 w-[1px] bg-slate-300 hidden sm:block"></div>
 
-              {/* 3. CONTEXTUAL LABEL: Shows the project's purpose clearly */}
               <div className="hidden sm:flex flex-col justify-center">
-                <span className="text-[12px] font-bold text-slate-700 tracking-widest uppercase opacity-90">
+                <span className="text-[12px] font-bold text-gray-500 tracking-widest uppercase opacity-90">
                   Inventory
                 </span>
                 <span className="text-[10px] font-medium text-slate-500 tracking-tight leading-none">
@@ -130,7 +139,6 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex gap-4">{links}</div>
 
           <div className="navbar-end gap-3">
-            {/* Elegant Theme Toggle */}
             <button
               onClick={toggleTheme}
               className="btn btn-ghost btn-circle text-base-content/70 hover:bg-primary/10 hover:text-primary transition-all"
@@ -151,7 +159,6 @@ const Navbar = () => {
               </Link>
             ) : (
               <div className="relative" ref={dropdownRef}>
-                {/* Profile Trigger */}
                 <button
                   onClick={() => setClickProfile(!clickProfile)}
                   className="flex items-center gap-2 p-1 pr-3 rounded-full bg-base-200 hover:bg-base-300 transition-all border border-base-content/5"
@@ -166,10 +173,8 @@ const Navbar = () => {
                   <TfiMenuAlt size={14} className="text-base-content/50" />
                 </button>
 
-                {/* Exceptional Profile Dropdown */}
                 {clickProfile && (
                   <div className="absolute right-0 mt-4 w-72 bg-base-100 rounded-[24px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-base-content/5 p-2 animate-in fade-in zoom-in duration-200 z-[110]">
-                    {/* User Info Header */}
                     <div className="p-4 bg-primary/5 rounded-[20px] mb-2 flex items-center gap-3">
                       <img
                         src={user?.photoURL}
@@ -186,7 +191,6 @@ const Navbar = () => {
                       </div>
                     </div>
 
-                    {/* Menu Links */}
                     <div className="space-y-1">
                       <DropdownItem
                         to="/dashboard"

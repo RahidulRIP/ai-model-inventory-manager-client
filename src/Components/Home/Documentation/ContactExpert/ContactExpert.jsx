@@ -19,7 +19,7 @@ const ContactExpert = () => {
   };
 
   return (
-    <section className="bg-[#fafafa] py-24 px-6 border-b-2 border-gray-300">
+    <section className="bg-base-200 py-24 px-6 border-b-2 border-gray-300">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side: Context */}
@@ -32,7 +32,7 @@ const ContactExpert = () => {
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600">
                 Enterprise Support
               </span>
-              <h2 className="text-5xl font-black text-slate-900 mt-4 tracking-tight leading-[1.1]">
+              <h2 className="text-5xl font-black text-gray-600 mt-4 tracking-tight leading-[1.1]">
                 Consult with our <br /> AI Engineers.
               </h2>
               <p className="text-slate-500 mt-6 text-lg leading-relaxed">
@@ -59,7 +59,7 @@ const ContactExpert = () => {
                     {item.icon}
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 uppercase text-[11px] tracking-widest">
+                    <h4 className="font-bold text-gray-500 uppercase text-[11px] tracking-widest">
                       {item.title}
                     </h4>
                     <p className="text-slate-500 text-sm mt-1">{item.desc}</p>
@@ -118,7 +118,7 @@ const ContactExpert = () => {
                   name="message"
                   rows="4"
                   placeholder="Describe your project goals..."
-                  className="w-full px-6 py-4 rounded-xl border-2 border-slate-200 focus:border-indigo-600 focus:outline-none transition-all font-medium resize-none"
+                  className="w-full px-6 py-4 rounded-xl border-2 border-slate-200 focus:border-indigo-600 focus:outline-none transition-all font-medium resize-none text-gray-500"
                 ></textarea>
               </div>
 

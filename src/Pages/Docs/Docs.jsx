@@ -32,7 +32,7 @@ const Docs = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] p-4 md:p-12 lg:p-20">
+    <div className="min-h-screen bg-base-200 p-4 md:p-12 lg:p-20">
       <Container>
         <div className="flex flex-col lg:flex-row gap-16">
           {/* STICKY SIDEBAR NAVIGATION */}
@@ -47,7 +47,7 @@ const Docs = () => {
                     <a
                       key={section.id}
                       href={`#${section.id}`}
-                      className="group flex items-center gap-4 px-6 py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all border-2 border-transparent bg-white hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]"
+                      className="group flex items-center gap-4 px-6 py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all border-2 border-transparent text-gray-500 bg-white hover:border-slate-900 hover:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]"
                     >
                       <span className="text-indigo-600 group-hover:scale-110 transition-transform">
                         {section.icon}
@@ -81,7 +81,7 @@ const Docs = () => {
               <div className="bg-indigo-600 inline-block p-4 rounded-3xl mb-8 shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] border-2 border-slate-900">
                 <FiCpu className="text-white" size={32} />
               </div>
-              <h1 className="text-6xl md:text-7xl font-black text-slate-900 uppercase tracking-tighter leading-[0.9]">
+              <h1 className="text-6xl md:text-7xl font-black text-gray-600 uppercase tracking-tighter leading-[0.9]">
                 Neural <br /> <span className="text-indigo-600">Protocol</span>
               </h1>
               <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mt-6 max-w-xl leading-relaxed">
@@ -93,7 +93,7 @@ const Docs = () => {
             <div className="space-y-24">
               {/* SECTION: INTRODUCTION */}
               <section id="intro" className="scroll-mt-10">
-                <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight mb-6 flex items-center gap-4">
+                <h2 className="text-3xl font-black text-gray-500 uppercase tracking-tight mb-6 flex items-center gap-4">
                   <span className="text-slate-200">01.</span> Introduction
                 </h2>
                 <div className="prose prose-slate max-w-none space-y-4">
@@ -108,7 +108,7 @@ const Docs = () => {
 
               {/* SECTION: INSTALLATION */}
               <section id="install" className="scroll-mt-10">
-                <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight mb-6 flex items-center gap-4">
+                <h2 className="text-3xl font-black text-gray-500 uppercase tracking-tight mb-6 flex items-center gap-4">
                   <span className="text-slate-200">02.</span> Installation
                 </h2>
                 <p className="text-slate-600 font-medium mb-6">
@@ -140,7 +140,7 @@ const Docs = () => {
 
               {/* SECTION: AUTHENTICATION */}
               <section id="auth" className="scroll-mt-10">
-                <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight mb-6 flex items-center gap-4">
+                <h2 className="text-3xl font-black text-gray-500  uppercase tracking-tight mb-6 flex items-center gap-4">
                   <span className="text-slate-200">03.</span> Authentication
                 </h2>
                 <div className="bg-amber-50 border-2 border-amber-200 p-8 rounded-[32px] mb-8">
@@ -168,7 +168,7 @@ const Docs = () => {
 
               {/* SECTION: USAGE */}
               <section id="usage" className="scroll-mt-10">
-                <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight mb-6 flex items-center gap-4">
+                <h2 className="text-3xl font-black text-gray-500  uppercase tracking-tight mb-6 flex items-center gap-4">
                   <span className="text-slate-200">04.</span> Basic Usage
                 </h2>
                 <div className="bg-slate-900 rounded-[32px] overflow-hidden border-4 border-slate-900 shadow-[12px_12px_0px_0px_rgba(15,23,42,1)]">
@@ -188,7 +188,7 @@ const Docs = () => {
 
               {/* SECTION: RATE LIMITS */}
               <section id="limits" className="scroll-mt-10">
-                <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight mb-6 flex items-center gap-4">
+                <h2 className="text-3xl font-black text-gray-500  uppercase tracking-tight mb-6 flex items-center gap-4">
                   <span className="text-slate-200">05.</span> Rate Limits
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -196,7 +196,7 @@ const Docs = () => {
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">
                       Free Tier
                     </p>
-                    <p className="text-2xl font-black text-slate-900">
+                    <p className="text-2xl font-black text-gray-500 ">
                       1,000{" "}
                       <span className="text-sm font-medium text-slate-400">
                         Req/Day
@@ -226,19 +226,19 @@ const Docs = () => {
               <div className="flex gap-8">
                 <a
                   href="#"
-                  className="text-[10px] font-black text-slate-900 uppercase hover:text-indigo-600"
+                  className="text-[10px] font-black text-gray-500  uppercase hover:text-indigo-600"
                 >
                   Github
                 </a>
                 <a
                   href="#"
-                  className="text-[10px] font-black text-slate-900 uppercase hover:text-indigo-600"
+                  className="text-[10px] font-black text-gray-500  uppercase hover:text-indigo-600"
                 >
                   Discord
                 </a>
                 <a
                   href="#"
-                  className="text-[10px] font-black text-slate-900 uppercase hover:text-indigo-600"
+                  className="text-[10px] font-black text-gray-500 uppercase hover:text-indigo-600"
                 >
                   Changelog
                 </a>

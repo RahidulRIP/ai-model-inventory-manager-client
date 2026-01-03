@@ -57,9 +57,9 @@ const AllModels = () => {
   if (loading && modelsData.length === 0) return <Loader />;
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] pb-24">
+    <div className="min-h-screen bg-base-100   pb-24">
       {/* Header Section with Industrial Aesthetic */}
-      <div className="bg-white border-b border-slate-200 pt-16 pb-12 mb-12">
+      <div className="bg-base-200  border-b border-slate-200 pt-16 pb-12 mb-12">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
@@ -71,7 +71,7 @@ const AllModels = () => {
                   Neural Inventory v2.0
                 </span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none">
+              <h1 className="text-4xl md:text-6xl font-black text-gray-500 tracking-tighter leading-none">
                 EXPLORE <br />
                 <span className="text-indigo-600">AI MODELS.</span>
               </h1>
@@ -102,7 +102,7 @@ const AllModels = () => {
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
                   placeholder="Identify model..."
-                  className="w-full pl-11 pr-24 py-4 bg-white border-2 border-slate-200 rounded-2xl text-sm font-bold outline-none focus:border-indigo-600 transition-all shadow-sm"
+                  className="w-full pl-11 pr-24 py-4 text-gray-400 bg-white border-2 border-slate-200 rounded-2xl text-sm font-bold outline-none focus:border-indigo-600 transition-all shadow-sm"
                 />
                 <button
                   type="submit"
@@ -137,7 +137,7 @@ const AllModels = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
             >
               {modelsData.map((model) => (
                 <ModelCard

@@ -42,7 +42,7 @@ const Benchmarks = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] p-6 md:p-12">
+    <div className="min-h-screen bg-base-200 p-6 md:p-12">
       <Container>
         {/* Header Section */}
         <div className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b-4 border-slate-900 pb-10">
@@ -55,7 +55,7 @@ const Benchmarks = () => {
                 Live Performance Metrics
               </span>
             </div>
-            <h1 className="text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+            <h1 className="text-5xl font-black text-gray-500 tracking-tighter uppercase leading-none">
               Neural <span className="text-indigo-600">Benchmarks</span>
             </h1>
           </div>

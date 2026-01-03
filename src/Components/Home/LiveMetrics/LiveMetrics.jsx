@@ -19,11 +19,11 @@ const LiveMetrics = () => {
     },
   ];
   return (
-    <section className="bg-white py-24 px-6 border-y border-slate-100 relative">
+    <section className="bg-base-200 py-24 px-6 border-y border-slate-100 relative">
       <Container>
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-xl">
-            <h2 className="text-slate-900 font-black text-5xl tracking-tighter mb-4">
+            <h2 className="text-gray-500 font-black text-5xl tracking-tighter mb-4">
               LIVE SYSTEM <br />{" "}
               <span className="text-indigo-600 underline decoration-2">
                 METRICS.
@@ -38,7 +38,7 @@ const LiveMetrics = () => {
               <p className="text-slate-400 text-[9px] font-black uppercase tracking-widest">
                 Global Traffic
               </p>
-              <p className="text-2xl font-black text-slate-900 tracking-tighter">
+              <p className="text-2xl font-black text-gray-500 tracking-tighter">
                 842.1k <span className="text-xs text-emerald-500">req/s</span>
               </p>
             </div>

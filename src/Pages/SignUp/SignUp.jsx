@@ -100,7 +100,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] flex items-center justify-center p-6 py-20">
+    <div className="min-h-screen bg-base-200 flex items-center justify-center p-6 py-20">
       <title>SignUp || Ai-Craft</title>
 
       <div className="w-full max-w-md">
@@ -109,7 +109,7 @@ const SignUp = () => {
           <div className="inline-flex items-center justify-center w-14 h-14 bg-slate-900 text-white rounded-2xl rotate-6 mb-4 shadow-[4px_4px_0px_0px_rgba(99,102,241,1)]">
             <FiCpu size={28} className="animate-pulse" />
           </div>
-          <h1 className="text-4xl font-black uppercase tracking-tighter text-slate-900">
+          <h1 className="text-4xl font-black uppercase tracking-tighter text-gray-600">
             Create Profile
           </h1>
           <p className="text-slate-500 font-bold text-xs uppercase tracking-widest mt-2">

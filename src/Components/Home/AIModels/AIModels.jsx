@@ -40,7 +40,7 @@ const AIModels = () => {
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+            <h2 className="text-4xl md:text-6xl font-black text-gray-500 tracking-tight leading-[1.1]">
               Featured <span className="text-indigo-600">AI Models</span>
             </h2>
 
@@ -66,8 +66,8 @@ const AIModels = () => {
         </div>
 
         {/* Grid Section: Constant Gap Ratios */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
-          {modelsData.slice(0, 6).map((data) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
+          {modelsData.slice(0, 4).map((data) => (
             <div
               key={data._id}
               className="group transition-all duration-500 hover:-translate-y-3"

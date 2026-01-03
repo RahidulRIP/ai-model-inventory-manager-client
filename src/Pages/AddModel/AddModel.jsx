@@ -32,7 +32,7 @@ const AddModel = () => {
       const data = await axiosPublic.post("/addModel", addModelInfo);
       if (data.data.insertedId) {
         toast.success("AI Model Registered Successfully");
-        navigate("/allModels");
+        navigate("/dashboard/myModelsPage");
       }
     } catch (error) {
       toast.error("Registration failed. Check system logs.");
