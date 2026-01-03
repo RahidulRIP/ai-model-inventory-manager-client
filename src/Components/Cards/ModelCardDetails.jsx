@@ -1,6 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router";
 import {
-  FaCalendarAlt,
   FaUser,
   FaDatabase,
   FaShoppingCart,
@@ -16,7 +15,6 @@ import Container from "../Container/Container";
 import Loader from "../Shared/Loader";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import PrimaryButton from "../Shared/PrimaryButton";
 
 const ModelCardDetails = () => {
   const [detailsData, setDetailsData] = useState({});
@@ -37,9 +35,18 @@ const ModelCardDetails = () => {
   }, [axiosPublic, id, refetch]);
 
   const handlePurchase = async () => {
-    // Standardizing the payload
+    if (!user?.email) {
+      navigate("/signIn");
+      return toast.error("Please login to acquire this model");
+    }
+
     const payload = {
       aiModel_Id: detailsData?._id,
+      name: detailsData?.name,
+      image: detailsData?.image,
+      framework: detailsData?.framework,
+      useCase: detailsData?.useCase,
+      createdBy: detailsData?.createdBy,
       purchased_By: user?.email,
       timestamp: new Date().toISOString(),
     };
@@ -49,12 +56,18 @@ const ModelCardDetails = () => {
         `/purchased/${detailsData?._id}`,
         payload
       );
+
       if (res.data.insertedId) {
         setRefetch(!refetch);
         toast.success("License Acquired Successfully");
+        navigate("/dashboard/myModelsPurchasePage");
       }
     } catch (error) {
-      toast.error("Transaction failed", error.message);
+      console.error("Purchase Error:", error);
+      toast.error(
+        "Transaction failed: " +
+          (error.response?.data?.message || "Server Error")
+      );
     }
   };
 
@@ -64,7 +77,7 @@ const ModelCardDetails = () => {
       text: "This action cannot be undone. The model will be permanently removed.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#ef4444", // Red for danger
+      confirmButtonColor: "#ef4444",
       confirmButtonText: "Delete Model",
       borderRadius: "16px",
     }).then((result) => {
@@ -185,7 +198,7 @@ const ModelCardDetails = () => {
                   <button
                     onClick={handlePurchase}
                     disabled={isOwner}
-                    className={`w-full py-5 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] transition-all duration-300 shadow-xl 
+                    className={`w-full py-5 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] transition-all duration-300 shadow-xl
       ${
         isOwner
           ? "bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200 shadow-none"

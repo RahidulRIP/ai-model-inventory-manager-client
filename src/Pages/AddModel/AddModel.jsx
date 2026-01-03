@@ -1,12 +1,12 @@
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
-// import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useNavigate } from "react-router";
-import { useContext } from "react";
 import { AuthContext } from "../../Providers/Context/AuthContext";
 import UseAxiosTokenSecure from "../../Hooks/UseAxiosTokenSecure";
+import { FiPlus, FiDatabase, FiLayers, FiInfo, FiImage } from "react-icons/fi";
+import Container from "../../Components/Container/Container";
 
 const AddModel = () => {
-  // const axiosPublic = useAxiosSecure();
   const axiosPublic = UseAxiosTokenSecure();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -14,171 +14,181 @@ const AddModel = () => {
   const handleAddModel = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
-    const framework = form.framework.value;
-    const useCase = form.useCase.value;
-    const dataset = form.dataSet.value;
-    const description = form.description.value;
-    const image = form.image.value;
-    const createdBy = form.email.value;
-    const createdAt = form.createdAt.value;
-    const purchased = parseInt(form.purChased.value);
+
+    // Professional practice: Consolidate data into an object directly
     const addModelInfo = {
-      name,
-      framework,
-      useCase,
-      dataset,
-      description,
-      image,
-      createdBy,
-      createdAt,
-      purchased,
+      name: form.name.value,
+      framework: form.framework.value,
+      useCase: form.useCase.value,
+      dataset: form.dataSet.value,
+      description: form.description.value,
+      image: form.image.value,
+      createdBy: user?.email,
+      createdAt: new Date().toISOString().split("T")[0], // Auto-generate date for better UX
+      purchased: 0,
     };
-    const data = await axiosPublic.post("/addModel", addModelInfo);
-    if (data.data.insertedId) {
-      toast.success("AI Model Data Add successfully!");
-      navigate("/allModels");
+
+    try {
+      const data = await axiosPublic.post("/addModel", addModelInfo);
+      if (data.data.insertedId) {
+        toast.success("AI Model Registered Successfully");
+        navigate("/allModels");
+      }
+    } catch (error) {
+      toast.error("Registration failed. Check system logs.");
+      console.error(error);
     }
   };
 
   return (
-    <div className="my-[var(--section-gap)] max-w-3xl mx-auto p-8 bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-lg border border-gray-100">
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
-        Add AI Model
-      </h2>
-
-      <form onSubmit={handleAddModel} className="space-y-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-700">
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
-              placeholder="name"
-            />
+    <div className="min-h-screen bg-[#f8fafc] p-2.5 md:p-12">
+      <Container>
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="mb-12 text-center md:text-left">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-600">
+              Inference Node Creation
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mt-2 tracking-tighter">
+              REGISTER NEW <span className="text-indigo-600">MODEL.</span>
+            </h2>
+            <p className="text-slate-500 mt-4 font-medium">
+              Deploy your neural architecture to the global marketplace.
+            </p>
           </div>
 
-          <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-700">
-              Framework
-            </label>
-            <input
-              type="text"
-              name="framework"
-              className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
-              placeholder="framework"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-700">
-              Use Case
-            </label>
-            <input
-              type="text"
-              name="useCase"
-              className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
-              placeholder="use case"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-700">
-              Dataset
-            </label>
-            <input
-              type="text"
-              name="dataSet"
-              className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
-              placeholder="dataset"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-sm font-semibold mb-2 text-gray-700">
-            Description
-          </label>
-          <textarea
-            name="description"
-            rows={5}
-            className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
-            placeholder="Describe the model..."
-          ></textarea>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-700">
-              Image URL
-            </label>
-            <input
-              type="url"
-              name="image"
-              className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
-              placeholder="https://..."
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-700">
-              Created By (email)
-            </label>
-            <input
-              type="email"
-              name="email"
-              defaultValue={user.email}
-              readOnly
-              className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
-              placeholder="user@example.com"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-700">
-              Created At
-            </label>
-            <input
-              type="date"
-              name="createdAt"
-              className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 focus:outline-none"
-            />
-          </div>
-        </div>
-
-        <div className="md:w-1/3">
-          <label className="block text-sm font-semibold mb-2 text-gray-700">
-            Purchased (number)
-          </label>
-          <input
-            type="number"
-            name="purChased"
-            defaultValue={0}
-            readOnly
-            className="w-full rounded-xl border border-gray-300 px-4 py-2 bg-gray-50 text-gray-800 placeholder-gray-400 focus:outline-none"
-            placeholder="number"
-          />
-        </div>
-
-        <div className="flex items-center justify-center gap-4 pt-4">
-          <button
-            type="submit"
-            className="px-6 py-2.5 w-full rounded-xl bg-indigo-600 text-white font-medium shadow hover:bg-indigo-700 transition duration-200"
+          <form
+            onSubmit={handleAddModel}
+            className="bg-white border-2 border-slate-900 rounded-[32px] p-8 md:p-12 shadow-[12px_12px_0px_0px_rgba(15,23,42,1)]"
           >
-            Save
-          </button>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Name Field */}
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-700">
+                  <FiPlus className="text-indigo-600" /> Model Identity
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="w-full rounded-2xl border-2 border-slate-100 px-5 py-4 bg-slate-50 focus:bg-white focus:border-indigo-600 focus:outline-none transition-all font-bold text-slate-900"
+                  placeholder="e.g. GPT-Neural-X"
+                />
+              </div>
 
-          <button
-            type="reset"
-            className="px-5 py-2.5 w-full rounded-xl border border-gray-300 text-gray-700 font-medium bg-white hover:bg-gray-100 transition duration-200"
-          >
-            Reset
-          </button>
+              {/* Framework Field - Switched to Select for UX */}
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-700">
+                  <FiLayers className="text-indigo-600" /> Framework
+                </label>
+                <select
+                  name="framework"
+                  className="w-full rounded-2xl border-2 border-slate-100 px-5 py-4 bg-slate-50 focus:bg-white focus:border-indigo-600 focus:outline-none transition-all font-bold text-slate-900 appearance-none"
+                >
+                  <option value="TensorFlow">TensorFlow</option>
+                  <option value="PyTorch">PyTorch</option>
+                  <option value="Keras">Keras</option>
+                  <option value="Scikit-Learn">Scikit-Learn</option>
+                </select>
+              </div>
+
+              {/* Use Case */}
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-700">
+                  <FiInfo className="text-indigo-600" /> Use Case
+                </label>
+                <input
+                  type="text"
+                  name="useCase"
+                  required
+                  className="w-full rounded-2xl border-2 border-slate-100 px-5 py-4 bg-slate-50 focus:bg-white focus:border-indigo-600 focus:outline-none transition-all font-bold text-slate-900"
+                  placeholder="e.g. NLP / Computer Vision"
+                />
+              </div>
+
+              {/* Dataset */}
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-700">
+                  <FiDatabase className="text-indigo-600" /> Training Dataset
+                </label>
+                <input
+                  type="text"
+                  name="dataSet"
+                  required
+                  className="w-full rounded-2xl border-2 border-slate-100 px-5 py-4 bg-slate-50 focus:bg-white focus:border-indigo-600 focus:outline-none transition-all font-bold text-slate-900"
+                  placeholder="e.g. ImageNet 2024"
+                />
+              </div>
+            </div>
+
+            {/* Description */}
+            <div className="mt-8 space-y-2">
+              <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-700">
+                Architecture Description
+              </label>
+              <textarea
+                name="description"
+                rows={4}
+                required
+                className="w-full rounded-2xl border-2 border-slate-100 px-5 py-4 bg-slate-50 focus:bg-white focus:border-indigo-600 focus:outline-none transition-all font-bold text-slate-900 resize-none"
+                placeholder="Technical specifications and layer details..."
+              ></textarea>
+            </div>
+
+            {/* Image URL */}
+            <div className="mt-8 space-y-2">
+              <label className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-700">
+                <FiImage className="text-indigo-600" /> Visual Representative
+                (URL)
+              </label>
+              <input
+                type="url"
+                name="image"
+                required
+                className="w-full rounded-2xl border-2 border-slate-100 px-5 py-4 bg-slate-50 focus:bg-white focus:border-indigo-600 focus:outline-none transition-all font-bold text-slate-900"
+                placeholder="https://cloud-storage.com/model-preview.jpg"
+              />
+            </div>
+
+            {/* Hidden Fields Info */}
+            <div className="mt-8 p-6 bg-slate-50 rounded-2xl border border-dashed border-slate-300 flex flex-col md:flex-row justify-between gap-4">
+              <div>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                  Authorized Creator
+                </p>
+                <p className="text-sm font-bold text-slate-700">
+                  {user?.email}
+                </p>
+              </div>
+              <div>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                  System Timestamp
+                </p>
+                <p className="text-sm font-bold text-slate-700">
+                  {new Date().toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col md:flex-row items-center gap-4 mt-12">
+              <button
+                type="submit"
+                className="w-full md:w-2/3 py-5 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-[4px_4px_0px_0px_rgba(79,70,229,1)] hover:bg-indigo-600 hover:shadow-none active:translate-y-1 transition-all"
+              >
+                Register Architecture
+              </button>
+
+              <button
+                type="reset"
+                className="w-full md:w-1/3 py-5 border-2 border-slate-200 text-slate-400 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-slate-50 hover:text-slate-600 transition-all"
+              >
+                Clear Node
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </Container>
     </div>
   );
 };

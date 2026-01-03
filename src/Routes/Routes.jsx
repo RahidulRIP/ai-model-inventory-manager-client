@@ -15,6 +15,11 @@ import MyModelsPurchasePage from "../Pages/MyModelsPurchasePage/MyModelsPurchase
 import DashboardLayout from "../Layout/DashboardLayout";
 import Documentation from "../Components/Home/Documentation/Documentation";
 import ContactExpert from "../Components/Home/Documentation/ContactExpert/ContactExpert";
+import UserHome from "../Dashboard/UserDashboard/UserHome/UserHome";
+import UpgradeCard from "../Dashboard/Components/UpgradeCard";
+import MyProfile from "../Dashboard/Components/MyProfile";
+import Benchmarks from "../Pages/Benchmarks/Benchmarks";
+import Docs from "../Pages/Docs/Docs";
 
 const router = createBrowserRouter([
   {
@@ -37,27 +42,66 @@ const router = createBrowserRouter([
         path: "allModels",
         Component: AllModels,
       },
-      {
-        path: "addModel",
-        element: (
-          <PrivateRoute>
-            <AddModel />
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "modelCardDetails/:id",
-        element: (
-          <PrivateRoute>
-            <ModelCardDetails />
-          </PrivateRoute>
-        ),
+        element: <ModelCardDetails />,
       },
       {
         path: "updateAiModelData/:id",
         element: (
           <PrivateRoute>
             <UpdatePage />
+          </PrivateRoute>
+        ),
+      },
+
+      // new add
+      {
+        path: "documentation",
+        Component: Documentation,
+      },
+      {
+        path: "contactExpert",
+        Component: ContactExpert,
+      },
+      {
+        path: "/benchmarks",
+        element: <Benchmarks />,
+      },
+      {
+        path: "/docs",
+        element: <Docs />,
+      },
+    ],
+  },
+  {
+    path: "banner",
+    Component: Banner,
+  },
+
+  {
+    path: "*",
+    Component: RoutesErrorPage,
+  },
+  // dashboard routes
+  {
+    path: "dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        Component: UserHome,
+      },
+      {
+        path: "profile",
+        Component: MyProfile,
+      },
+      {
+        path: "addModel",
+        element: (
+          <PrivateRoute>
+            <AddModel />
           </PrivateRoute>
         ),
       },
@@ -78,30 +122,11 @@ const router = createBrowserRouter([
         ),
       },
 
-      // new add
       {
-        path: "documentation",
-        Component: Documentation,
-      },
-      {
-        path: "contactExpert",
-        Component: ContactExpert,
+        path: "UpgradeCard",
+        Component: UpgradeCard,
       },
     ],
-  },
-  {
-    path: "banner",
-    Component: Banner,
-  },
-
-  {
-    path: "*",
-    Component: RoutesErrorPage,
-  },
-  // dashboard routes
-  {
-    path: "dashboard",
-    element: <DashboardLayout />,
   },
 ]);
 

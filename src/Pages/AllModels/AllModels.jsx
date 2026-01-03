@@ -1,128 +1,162 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Loader from "../../Components/Shared/Loader";
 import Container from "../../Components/Container/Container";
 import ModelCard from "../../Components/Cards/ModelCard";
 import { useLocation } from "react-router";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import SearchNotFound from "../../Components/Error/SearchNotFound";
+import { FiSearch, FiFilter, FiCpu } from "react-icons/fi";
 
 const AllModels = () => {
   const [modelsData, setModelsData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(true);
-  const axiosPublic = useAxiosSecure();
-  const location = useLocation();
-  const allModelsPath = location.pathname;
-  useEffect(() => {
-    const fetchModels = async () => {
+  const [activeFramework, setActiveFramework] = useState("All Frameworks");
+
+  const axiosSecure = useAxiosSecure();
+  const { pathname } = useLocation();
+
+  // Unified Fetch Function - Senior Practice: Memoize callbacks to prevent unnecessary re-renders
+  const fetchModels = useCallback(
+    async (params = {}) => {
       try {
-        const data = await axiosPublic.get("/models");
-        setModelsData(data?.data);
+        setLoading(true);
+        const endpoint = params.search
+          ? `/models/search?value=${params.search}`
+          : params.filter && params.filter !== "All Frameworks"
+          ? `/models/filter?value=${params.filter}`
+          : "/models";
+
+        const response = await axiosSecure.get(endpoint);
+        setModelsData(response?.data || []);
       } catch (err) {
-        console.log(err);
+        console.error("Data Retrieval Error:", err);
       } finally {
         setLoading(false);
       }
-    };
+    },
+    [axiosSecure]
+  );
+
+  useEffect(() => {
     fetchModels();
-  }, [axiosPublic]);
+  }, [fetchModels]);
 
-  // search
-  const handleSearchButton = async () => {
-    try {
-      setLoading(true);
-      const searchData = await axiosPublic.get(
-        `/models/search?value=${searchValue}`
-      );
-      setModelsData(searchData?.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
+  const onFilterChange = (e) => {
+    const val = e.target.value;
+    setActiveFramework(val);
+    fetchModels({ filter: val });
   };
 
-  // filter
-  const handleFilterData = async (e) => {
-    try {
-      setLoading(true);
-      const frameworkValue = e.target.value;
-      const data = await axiosPublic.get(
-        `models/filter?value=${frameworkValue}`
-      );
-      setModelsData(data?.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetchModels({ search: searchValue });
   };
 
-  if (loading) {
-    return <Loader />;
-  }
+  if (loading && modelsData.length === 0) return <Loader />;
+
   return (
-    <div className="mb-8 md:mb-24">
-      <Container>
-        <div className="flex flex-col items-center">
-          <motion.h2
-            initial={{ opacity: 0, y: -30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-500 bg-clip-text my-10 text-transparent text-center md:text-start "
-          >
-            Featured AI Models
-          </motion.h2>
-          {/* search  */}
-          {/* filter  */}
-          <div className="w-full p-2.5">
-            <div className="md:flex justify-around  w-full items-center">
-              <select
-                onChange={handleFilterData}
-                defaultValue="Pick a color"
-                className="select  mb-2.5"
-              >
-                <option disabled={true}>Pick a framework</option>
-                <option>TensorFlow</option>
-                <option>PyTorch</option>
-                <option>Keras</option>
-              </select>
+    <div className="min-h-screen bg-[#f8fafc] pb-24">
+      {/* Header Section with Industrial Aesthetic */}
+      <div className="bg-white border-b border-slate-200 pt-16 pb-12 mb-12">
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
+                  <FiCpu className="text-xl" />
+                </span>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+                  Neural Inventory v2.0
+                </span>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none">
+                EXPLORE <br />
+                <span className="text-indigo-600">AI MODELS.</span>
+              </h1>
+            </div>
 
-              <fieldset className="fieldset flex ">
+            {/* Glassmorphism Control Bar */}
+            <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+              <div className="relative group">
+                <FiFilter className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 z-10" />
+                <select
+                  onChange={onFilterChange}
+                  className="pl-11 pr-8 py-4 bg-white border-2 border-slate-200 rounded-2xl text-sm font-bold text-slate-700 outline-none focus:border-indigo-600 transition-all appearance-none cursor-pointer min-w-[180px] shadow-sm"
+                >
+                  <option>All Frameworks</option>
+                  <option>TensorFlow</option>
+                  <option>PyTorch</option>
+                  <option>Keras</option>
+                </select>
+              </div>
+
+              <form
+                onSubmit={handleSearch}
+                className="flex flex-1 md:w-80 relative"
+              >
+                <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
-                  onChange={(e) => setSearchValue(e.target.value)}
                   type="text"
-                  className="input focus:outline-none"
-                  placeholder="Type here"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  placeholder="Identify model..."
+                  className="w-full pl-11 pr-24 py-4 bg-white border-2 border-slate-200 rounded-2xl text-sm font-bold outline-none focus:border-indigo-600 transition-all shadow-sm"
                 />
                 <button
-                  onClick={handleSearchButton}
-                  type="button"
-                  className="btn btn-active"
+                  type="submit"
+                  className="absolute right-2 top-2 bottom-2 px-6 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 transition-colors"
                 >
-                  search
+                  Query
                 </button>
-              </fieldset>
+              </form>
             </div>
           </div>
-          <div className="divider"></div>
-          <div>
-            {modelsData && modelsData.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  md:gap-x-16 gap-y-3.5 md:gap-y-10">
-                {modelsData.map((data) => (
-                  <ModelCard
-                    key={data._id}
-                    data={data}
-                    allModelsPath={allModelsPath}
-                  />
-                ))}
-              </div>
-            ) : (
-              <SearchNotFound />
-            )}
-          </div>
+        </Container>
+      </div>
+
+      <Container>
+        {/* Results Info */}
+        <div className="flex items-center justify-between mb-8 px-2">
+          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+            Showing {modelsData.length} instances
+            {activeFramework !== "All Frameworks" &&
+              ` // Filter: ${activeFramework}`}
+          </p>
+          <div className="h-[1px] flex-1 bg-slate-200 mx-6 hidden md:block" />
         </div>
+
+        {/* Content Grid */}
+        <AnimatePresence mode="wait">
+          {loading ? (
+            <div className="py-20 flex justify-center w-full">
+              <span className="loading loading-dots loading-lg text-indigo-600"></span>
+            </div>
+          ) : modelsData.length > 0 ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12"
+            >
+              {modelsData.map((model) => (
+                <ModelCard
+                  key={model._id}
+                  data={model}
+                  allModelsPath={pathname}
+                />
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="py-20"
+            >
+              <SearchNotFound />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Container>
     </div>
   );

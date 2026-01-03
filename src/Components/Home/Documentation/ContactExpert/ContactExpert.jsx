@@ -19,7 +19,7 @@ const ContactExpert = () => {
   };
 
   return (
-    <section className="bg-white py-24 px-6">
+    <section className="bg-[#fafafa] py-24 px-6 border-b-2 border-gray-300">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side: Context */}

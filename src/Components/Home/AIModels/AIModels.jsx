@@ -28,7 +28,7 @@ const AIModels = () => {
 
   return (
     // ADJUSTMENT: Increased vertical padding for better section breathing
-    <section className="my-[var(--section-gap)] p-10">
+    <section className="my-[var(--section-gap)]">
       <Container>
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">

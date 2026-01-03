@@ -1,89 +1,141 @@
 import { Link } from "react-router";
 import Container from "../../../Components/Container/Container";
 import logo from "../../../assets/AICraftLogo.png";
-import { FaGithub, FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaXTwitter, FaYoutube, FaFacebook } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className="bg-neutral ">
+    <footer className="bg-[#f1f5f9] text-slate-600 pt-24 pb-12 border-t-8 border-slate-900 relative overflow-hidden p-6">
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: "matrix(1, 0, 0, 1, 0, 0)",
+          background:
+            "linear-gradient(90deg, #000 1px, transparent 1px), linear-gradient(#000 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
+        }}
+      />
+
       <Container>
-        <footer className="footer sm:footer-horizontal p-10 text-white md:justify-around">
-          <nav className="footer bg-black text-white border-base-300  border-y border-y-gray-500 px-10 py-2">
-            <aside className="md:grid-flow-col items-center">
-              <div>
-                <img className="w-24 h-24 rounded-3xl" src={logo} alt="" />
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20 relative z-10">
+          {/* Brand Identity Section */}
+          <div className="md:col-span-5 space-y-8">
+            <div className="flex items-center gap-5">
+              <div className="p-3 bg-white rounded-none border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
+                <img className="w-10 h-10" src={logo} alt="AI Craft Logo" />
               </div>
-              <p>
-                <span className="text-lg font-semibold"> Ai Craft Ltd.</span>
-                <br />
-                Trusted technology solutions since 1992
-              </p>
-            </aside>
-            <div className="md:place-self-start md:justify-self-end">
-              <div className="grid grid-flow-col gap-4">
-                <a
-                  href="https://github.com/RahidulRIP?tab=repositories"
-                  target="_blank"
-                >
-                  <FaGithub
-                    size={24}
-                    className="hover:text-gray-700 transition-colors duration-200"
-                  />
-                </a>
-                <a>
-                  <FaXTwitter
-                    size={24}
-                    className="hover:text-gray-700 transition-colors duration-200"
-                  />
-                </a>
-                <a>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    className="fill-current"
-                  >
-                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-                  </svg>
-                </a>
-                <a>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    className="fill-current"
-                  >
-                    <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-                  </svg>
-                </a>
+              <div>
+                <h3 className="text-slate-900 font-black text-2xl tracking-tighter leading-none">
+                  AI CRAFT<span className="text-indigo-600">.</span>
+                </h3>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mt-1">
+                  Revision_09.2026
+                </p>
               </div>
             </div>
-          </nav>
-          <nav>
-            <h6 className="footer-title">Services</h6>
-            <a className="link link-hover">Branding</a>
-            <a className="link link-hover">Design</a>
-            <a className="link link-hover">Marketing</a>
-            <a className="link link-hover">Advertisement</a>
-          </nav>
-          <nav>
-            <h6 className="footer-title">Company</h6>
-            <a className="link link-hover">About us</a>
-            <a className="link link-hover">Contact</a>
-            <a className="link link-hover">Jobs</a>
-            <a className="link link-hover">Press kit</a>
-          </nav>
-          <nav>
-            <h6 className="footer-title">Legal</h6>
-            <a className="link link-hover">Terms of use</a>
-            <a className="link link-hover">Privacy policy</a>
-            <a className="link link-hover">Cookie policy</a>
-          </nav>
-        </footer>
+
+            <p className="text-sm leading-relaxed max-w-sm text-slate-500 font-bold border-l-4 border-slate-200 pl-4">
+              Providing enterprise-grade AI model architectures and secure
+              deployment solutions. Engineered for high-concurrency distributed
+              intelligence.
+            </p>
+
+            <div className="flex gap-2">
+              {[
+                { icon: <FaGithub />, link: "https://github.com/RahidulRIP" },
+                { icon: <FaXTwitter />, link: "#" },
+                { icon: <FaYoutube />, link: "#" },
+                { icon: <FaFacebook />, link: "#" },
+              ].map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.link}
+                  className="w-10 h-10 bg-white border-2 border-slate-900 flex items-center justify-center text-slate-900 hover:bg-slate-900 hover:text-white transition-colors duration-200 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="md:col-span-2 space-y-6">
+            <h6 className="text-slate-900 font-black uppercase text-[11px] tracking-[0.2em] bg-slate-200 px-2 py-1 inline-block">
+              Capabilities
+            </h6>
+            <nav className="flex flex-col gap-3 text-xs font-black uppercase tracking-widest text-slate-400">
+              <Link to="#" className="hover:text-indigo-600 transition-colors">
+                Neural Branding
+              </Link>
+              <Link to="#" className="hover:text-indigo-600 transition-colors">
+                Architecture
+              </Link>
+              <Link to="#" className="hover:text-indigo-600 transition-colors">
+                Market Analysis
+              </Link>
+              <Link to="#" className="hover:text-indigo-600 transition-colors">
+                Deployment
+              </Link>
+            </nav>
+          </div>
+
+          <div className="md:col-span-2 space-y-6">
+            <h6 className="text-slate-900 font-black uppercase text-[11px] tracking-[0.2em] bg-slate-200 px-2 py-1 inline-block">
+              Corporate
+            </h6>
+            <nav className="flex flex-col gap-3 text-xs font-black uppercase tracking-widest text-slate-400">
+              <Link to="#" className="hover:text-indigo-600 transition-colors">
+                About Mission
+              </Link>
+              <Link
+                to="/contactExpert"
+                className="hover:text-indigo-600 transition-colors"
+              >
+                Expert Support
+              </Link>
+              <Link to="#" className="hover:text-indigo-600 transition-colors">
+                Career Node
+              </Link>
+              <Link to="#" className="hover:text-indigo-600 transition-colors">
+                Press
+              </Link>
+            </nav>
+          </div>
+
+          <div className="md:col-span-3 md:text-right space-y-6">
+            <h6 className="text-slate-900 font-black uppercase text-[11px] tracking-[0.2em] bg-slate-200 px-2 py-1 inline-block">
+              Legal Matrix
+            </h6>
+            <nav className="flex flex-col gap-3 text-xs font-black uppercase tracking-widest text-slate-400">
+              <Link to="#" className="hover:text-indigo-600 transition-colors">
+                Terms of Protocol
+              </Link>
+              <Link to="#" className="hover:text-indigo-600 transition-colors">
+                Privacy Encryption
+              </Link>
+              <Link to="#" className="hover:text-indigo-600 transition-colors">
+                Cookie Policy
+              </Link>
+            </nav>
+          </div>
+        </div>
+
+        <div className="pt-8 border-t-2 border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="font-mono text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+            © 2026 AI CRAFT LTD. // [SECURE_CONNECTION_ESTABLISHED]
+          </div>
+
+          <div className="flex gap-6 font-mono text-[10px] font-black uppercase tracking-widest">
+            <span className="flex items-center gap-2 text-slate-900">
+              <span className="w-2 h-2 bg-indigo-600 animate-ping" />
+              Status: Active
+            </span>
+            <span className="bg-slate-900 text-white px-2 py-0.5">
+              Uptime: 99.9%
+            </span>
+          </div>
+        </div>
       </Container>
-    </div>
+    </footer>
   );
 };
 
