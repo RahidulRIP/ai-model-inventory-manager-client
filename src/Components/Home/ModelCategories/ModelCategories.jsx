@@ -57,16 +57,16 @@ const ModelCategories = () => {
 
   if (loading)
     return (
-      <div className="py-20 text-center font-black animate-pulse text-indigo-600">
+      <div className="py-20  text-center font-black animate-pulse text-indigo-600">
         SCANNING_FRAMEWORK_STACKS...
       </div>
     );
 
   return (
-    <div className="py-24 bg-base-200">
+    <div className="py-24 md:py-40 bg-base-200">
       <Container>
         <div className="mb-16">
-          <h2 className="text-6xl font-black uppercase tracking-tighter italic">
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter italic">
             Framework <span className="text-indigo-600">Stacks</span>
           </h2>
           <p className="text-slate-500 font-bold uppercase text-sm tracking-widest mt-2">
@@ -78,7 +78,7 @@ const ModelCategories = () => {
           {categories.map((cat, idx) => (
             <div
               key={idx}
-              className="group p-10 border-2 border-slate-900 bg-white shadow-[4px_4px_0px_0px_rgba(79,70,229,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all cursor-pointer"
+              className="group p-10 border-2 border-slate-900 bg-white md:shadow-[8px_8px_0px_0px_rgba(79,70,229,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all cursor-pointer"
             >
               <div className="text-5xl text-indigo-600 mb-8 group-hover:rotate-12 transition-transform duration-300">
                 {getIcon(cat.name)}

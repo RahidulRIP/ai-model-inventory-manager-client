@@ -68,7 +68,7 @@ const AboutAIModels = () => {
   ];
 
   return (
-    <section className="md:px-16 text-slate-900 overflow-hidden my-[var(--section-gap)] p-2.5 md:p-12">
+    <section className="md:px-16 text-slate-900 overflow-hidden pb-24 md:pb-40 p-2.5 md:p-12">
       <div className="max-w-5xl mx-auto text-center mb-20">
         <motion.span
           initial={{ opacity: 0 }}

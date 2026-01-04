@@ -35,44 +35,47 @@ const TechStack = () => {
   ];
 
   return (
-    <div className="py-16 bg-base-200 border-b-2 border-gray-300 overflow-hidden">
-      <Container>
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          {/* Label */}
-          <div className="shrink-0">
-            <h3 className="text-xs font-black uppercase tracking-[0.4em] text-slate-400 mb-2">
-              Powering_The_Core
-            </h3>
-            <p className="text-2xl font-black uppercase italic leading-none">
-              Enterprise <br /> <span className="text-indigo-600">Stack</span>
-            </p>
-          </div>
+    <div className="pb-24 md:pb-40">
+      <div className="py-16 bg-base-200 border-b-2 border-gray-300 overflow-hidden">
+        <Container>
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            {/* Label */}
+            <div className="shrink-0">
+              <h3 className="text-xs font-black uppercase tracking-[0.4em] text-slate-400 mb-2">
+                Powering_The_Core
+              </h3>
+              <p className="text-2xl font-black uppercase italic leading-none">
+                Enterprise <br /> <span className="text-indigo-600">Stack</span>
+              </p>
+            </div>
 
-          {/* Logo Scrolling Container */}
-          <div className="flex-1 w-full overflow-hidden">
-            <div className="flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-4">
-              {technologies.map((tech, idx) => (
-                <div
-                  key={idx}
-                  className={`text-5xl md:text-6xl text-slate-300 transition-all duration-300 cursor-help ${tech.color} hover:scale-110 flex flex-col items-center gap-2`}
-                  title={tech.name}
-                >
-                  {tech.icon}
-                  <span className="text-[10px] font-bold uppercase tracking-tighter text-slate-400 opacity-0 hover:opacity-100 transition-opacity">
-                    {tech.name}
-                  </span>
-                </div>
-              ))}
+            {/* Logo Scrolling Container */}
+            <div className="flex-1 w-full overflow-hidden">
+              <div className="flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-4">
+                {technologies.map((tech, idx) => (
+                  <div
+                    key={idx}
+                    className={`text-5xl md:text-6xl text-slate-300 transition-all duration-300 cursor-help ${tech.color} hover:scale-110 flex flex-col items-center gap-2`}
+                    title={tech.name}
+                  >
+                    {tech.icon}
+                    <span className="text-[10px] font-bold uppercase tracking-tighter text-slate-400 opacity-0 hover:opacity-100 transition-opacity">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </Container>
+        </Container>
 
-      {/* Decorative Marquee Line */}
-      <div className="mt-12 bg-slate-900 py-2 rotate-1">
-        <p className="text-[10px] font-mono text-white whitespace-nowrap animate-pulse uppercase tracking-[1em] text-center">
-          SYSTEM_STABILITY: 100% // NEURAL_LINK: ACTIVE // COMPUTE_NODES: GLOBAL
-        </p>
+        {/* Decorative Marquee Line */}
+        <div className="mt-12 bg-slate-900 py-2 rotate-1">
+          <p className="text-[10px] font-mono text-white whitespace-nowrap animate-pulse uppercase tracking-[1em] text-center">
+            SYSTEM_STABILITY: 100% // NEURAL_LINK: ACTIVE // COMPUTE_NODES:
+            GLOBAL
+          </p>
+        </div>
       </div>
     </div>
   );

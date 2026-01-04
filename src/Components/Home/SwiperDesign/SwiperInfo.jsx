@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
+import { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../../../Providers/Context/AuthContext";
+import { AiOutlineLogin } from "react-icons/ai";
 
 const SwiperInfo = ({ image, title, subtitle, isActive }) => {
+  const { user } = use(AuthContext);
   return (
     <div className="relative h-full w-full flex items-center justify-center md:justify-start">
       <div className="absolute inset-0 z-0">
@@ -50,12 +54,51 @@ const SwiperInfo = ({ image, title, subtitle, isActive }) => {
                 : "translate-y-10 opacity-0"
             }`}
           >
-            <Link
+            {/* <Link
               to="/allModels"
               className="inline-block w-full sm:w-auto px-10 py-4 bg-cyan-500 text-slate-950 font-bold rounded-xl hover:bg-cyan-400 transition-colors text-center"
             >
               Get Started
-            </Link>
+            </Link> */}
+
+            {user ? (
+              <div className="flex items-center gap-4">
+                {/* Dynamic Welcome Message */}
+                <div className="hidden md:block text-right">
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                    System Access: Granted
+                  </p>
+                  <h4 className="text-sm font-black uppercase text-gray-500">
+                    Welcome,{" "}
+                    <span className="text-indigo-600">
+                      {user?.displayName || "Agent"}
+                    </span>
+                  </h4>
+                </div>
+
+                {/* Optional: User Avatar/Profile Icon could go here */}
+                <div className="w-10 h-10 bg-indigo-600 border-2 border-slate-900 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] flex items-center justify-center text-white font-black">
+                  {user?.displayName?.charAt(0) || "U"}
+                </div>
+              </div>
+            ) : (
+              <Link to="/signUp" className="no-underline">
+                <button
+                  className="
+                    group flex items-center justify-center gap-4 bg-white text-slate-900 
+                    font-black text-xs uppercase tracking-[0.3em] px-10 py-6 rounded-2xl 
+                    transition-all duration-300 
+                    hover:bg-indigo-500 hover:text-white
+                    active:translate-y-1 
+                    shadow-[8px_8px_0px_0px_rgba(79,70,229,1)]
+                    hover:shadow-none
+                  "
+                >
+                  <AiOutlineLogin className="text-xl transition-transform group-hover:rotate-12" />
+                  Get Started Now
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

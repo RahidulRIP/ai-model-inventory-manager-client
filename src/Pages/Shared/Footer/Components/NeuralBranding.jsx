@@ -21,7 +21,7 @@ const NeuralBranding = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-base-100 pt-20">
+    <div className="min-h-screen bg-base-100 pt-12 md:pt-20">
       <Container>
         {/* Header Section */}
         <div className="max-w-3xl mb-16">

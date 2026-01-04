@@ -6,12 +6,17 @@ import GetStarted from "../../Components/Home/GetStarted/GetStarted";
 import LiveMetrics from "../../Components/Home/LiveMetrics/LiveMetrics";
 import ModelCategories from "../../Components/Home/ModelCategories/ModelCategories";
 import TechStack from "../../Components/Home/TechStack/TechStack";
+import PrivacyEncryption from "../Shared/Footer/Components/PrivacyEncryption";
+import TermsOfProtocol from "../Shared/Footer/Components/TermsOfProtocol";
 
 const Home = () => {
   return (
     <div className="bg-base-200">
       <section>
         <Banner />
+      </section>
+      <section>
+        <ModelCategories />
       </section>
       <section>
         <AIModels />
@@ -23,16 +28,21 @@ const Home = () => {
         <TechStack />
       </section>
       <section>
-        <ModelCategories />
+        <LiveMetrics />
       </section>
+      <section>
+        <PrivacyEncryption />
+      </section>
+
       <section>
         <FAQ />
       </section>
       <section>
-        <LiveMetrics />
-      </section>
-      <section>
         <GetStarted />
+      </section>
+
+      <section>
+        <TermsOfProtocol />
       </section>
     </div>
   );

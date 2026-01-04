@@ -26,13 +26,13 @@ const PrivacyEncryption = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-base-100 pt-20 pb-20">
+    <div className="min-h-screen bg-base-200 py-12 md:py-20">
       <Container>
-        <div className="max-w-4xl mx-auto">
+        <div>
           {/* Hero Section */}
           <div className="flex flex-col md:flex-row items-center gap-10 mb-20">
             <div className="flex-1">
-              <h1 className="text-6xl font-black tracking-tighter uppercase leading-none mb-6">
+              <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none mb-6">
                 Privacy <br />
                 <span className="text-indigo-600 italic">Encryption</span>
               </h1>

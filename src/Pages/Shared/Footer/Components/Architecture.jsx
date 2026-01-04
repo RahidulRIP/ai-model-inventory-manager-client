@@ -29,11 +29,11 @@ const Architecture = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-base-100 pt-20 pb-20">
+    <div className="min-h-screen bg-base-100 pt-12 md:pt-20 pb-20">
       <Container>
         {/* Header */}
         <div className="border-l-8 border-primary pl-6 mb-16">
-          <h1 className="text-5xl font-black tracking-tighter uppercase italic">
+          <h1 className="text-3xl md:text-5xl font-black tracking-tighter uppercase italic">
             System <span className="text-primary">Architecture</span>
           </h1>
           <p className="text-slate-500 font-bold mt-2 tracking-widest uppercase text-sm">
@@ -72,7 +72,7 @@ const Architecture = () => {
         </div>
 
         {/* System Diagram Placeholder */}
-        <div className="mt-12 p-12 border-2 border-dashed border-slate-300 rounded-[40px] text-center">
+        <div className="mt-12 p-1 md:p-12 border-2 border-dashed border-slate-300 rounded-[40px] text-center">
           <p className="font-mono text-xs text-slate-400 uppercase tracking-[0.5em]">
             [ Diagram_Interface_Loading... ]
           </p>

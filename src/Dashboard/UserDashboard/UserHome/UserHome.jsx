@@ -103,7 +103,12 @@ const UserHome = () => {
       setAdminData(res.data);
       setAdminActionView(action);
     } catch (err) {
-      Swal.fire("Error", "Failed to fetch administrative data", "error");
+      Swal.fire(
+        "Error",
+        "Failed to fetch administrative data",
+        "error",
+        err.message
+      );
     } finally {
       setLoading(false);
     }
@@ -129,15 +134,37 @@ const UserHome = () => {
 
     if (result.isConfirmed) {
       try {
+        // Construct the correct endpoint based on the item type
         const endpoint =
           type === "model"
             ? `/admin/delete-model/${id}`
             : `/admin/delete-purchase/${id}`;
-        await axiosSecure.delete(endpoint);
-        setAdminData(adminData.filter((item) => item._id !== id));
-        Swal.fire("Success", "Record Purged.", "success");
+
+        // Execute the DELETE request to the database
+        const response = await axiosSecure.delete(endpoint);
+
+        if (response.data.deletedCount > 0 || response.status === 200) {
+          // 1. Remove from the current table view
+          setAdminData((prevData) =>
+            prevData.filter((item) => item._id !== id)
+          );
+
+          // 2. Refresh the overall stats (Revenue, Total Models, etc.)
+          // so the dashboard cards update without a page refresh
+          const adminRes = await axiosSecure.get("/admin-stats");
+          setStats(adminRes.data);
+
+          Swal.fire({
+            title: "Deleted!",
+            text: "The record has been deleted from the database.",
+            icon: "success",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        }
       } catch (err) {
-        Swal.fire("Error", "Action Failed.", "error", err.message);
+        console.error("Delete Error:", err);
+        Swal.fire("Error", "Server rejected the deletion request.", "error");
       }
     }
   };
@@ -146,7 +173,7 @@ const UserHome = () => {
 
   const isAdmin = dbUser?.role === "admin";
 
-  // --- RENDERING ADMIN VIEW (THE NEW DESIGN) ---
+  // ADMIN VIEW
   const renderAdminView = () => (
     <div className="space-y-10 animate-in fade-in duration-500">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

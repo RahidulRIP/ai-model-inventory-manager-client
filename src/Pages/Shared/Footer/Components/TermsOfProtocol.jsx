@@ -29,11 +29,11 @@ const TermsOfProtocol = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-base-100 pt-20 pb-20">
+    <div className="min-h-screen bg-base-200">
       <Container>
-        <div className="max-w-4xl mx-auto">
+        <div className="">
           {/* Header Section */}
-          <div className="bg-slate-900 text-white p-10 border-b-8 border-indigo-600 mb-12 shadow-[10px_10px_0px_0px_rgba(79,70,229,0.3)]">
+          <div className="bg-[#1d293c] text-white p-10 border-b-8 border-indigo-600 mb-12 shadow-[2px_2px_0px_0px_rgba(79,70,229,0.3)]">
             <h1 className="text-5xl font-black uppercase tracking-tighter italic">
               Terms of <span className="text-indigo-400">Protocol</span>
             </h1>

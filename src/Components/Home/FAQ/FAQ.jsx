@@ -33,7 +33,7 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="py-12 md:py-24 bg-slate-900 text-white overflow-hidden">
+    <div className="pb-24 md:pb-44 bg-base-200 text-white overflow-hidden">
       <Container>
         <div className="flex flex-col lg:flex-row border-2 md:border-4 border-indigo-500 shadow-[10px_10px_0px_0px_rgba(79,70,229,0.2)] md:shadow-[20px_20px_0px_0px_rgba(79,70,229,0.2)]">
           <div className="w-full lg:w-2/5 p-6 md:p-12 bg-slate-800 border-b-2 lg:border-b-0 lg:border-r-4 border-indigo-500">

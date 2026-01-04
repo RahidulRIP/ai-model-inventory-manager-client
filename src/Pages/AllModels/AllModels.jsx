@@ -58,8 +58,7 @@ const AllModels = () => {
 
   return (
     <div className="min-h-screen bg-base-100   pb-24">
-      {/* Header Section with Industrial Aesthetic */}
-      <div className="bg-base-200  border-b border-slate-200 pt-16 pb-12 mb-12">
+      <div className="bg-base-200  border-b border-slate-200 md:pt-16 pb-12 mb-12">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
@@ -77,7 +76,6 @@ const AllModels = () => {
               </h1>
             </div>
 
-            {/* Glassmorphism Control Bar */}
             <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
               <div className="relative group">
                 <FiFilter className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 z-10" />

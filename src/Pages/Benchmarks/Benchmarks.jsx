@@ -59,7 +59,7 @@ const Benchmarks = () => {
               Neural <span className="text-indigo-600">Benchmarks</span>
             </h1>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             {["Inference", "Training", "Latency"].map((tab) => (
               <button
                 key={tab}

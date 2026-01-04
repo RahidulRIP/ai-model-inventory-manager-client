@@ -6,6 +6,7 @@ import {
   //   RiCookieLine,
 } from "react-icons/ri";
 import Container from "../../../../Components/Container/Container";
+import { MdOutlineLocalPolice } from "react-icons/md";
 
 const CookiePolicy = () => {
   const cookieTypes = [
@@ -30,12 +31,14 @@ const CookiePolicy = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-base-100 pt-20 pb-20">
+    <div className="min-h-screen bg-base-100 pt-12 md:pt-20 pb-20">
       <Container>
-        <div className="max-w-4xl mx-auto">
+        <div>
           {/* Header */}
           <div className="flex flex-col md:flex-row items-center gap-8 mb-16 border-b-4 border-slate-900 pb-10">
-            <div className="w-20 h-20 bg-indigo-600 text-white flex items-center justify-center rounded-none shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]"></div>
+            <div className="w-20 h-20 bg-indigo-600 text-white flex items-center justify-center rounded-none shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
+              <MdOutlineLocalPolice size={30} />
+            </div>
             <div>
               <h1 className="text-5xl font-black tracking-tighter uppercase leading-none">
                 Cookie <span className="text-indigo-600 italic">Policy</span>

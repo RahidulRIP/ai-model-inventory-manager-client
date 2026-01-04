@@ -19,7 +19,7 @@ const LiveMetrics = () => {
     },
   ];
   return (
-    <section className="bg-base-200 py-24 px-6 border-y border-slate-100 relative">
+    <section className="bg-base-200 pb-16 md:pb-24 px-6 relative">
       <Container>
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-xl">

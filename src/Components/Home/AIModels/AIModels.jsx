@@ -27,8 +27,7 @@ const AIModels = () => {
   if (loading) return <Loader />;
 
   return (
-    // ADJUSTMENT: Increased vertical padding for better section breathing
-    <section className="my-[var(--section-gap)]">
+    <section className="pb-16 md:pb-32">
       <Container>
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
@@ -50,7 +49,6 @@ const AIModels = () => {
             </p>
           </div>
 
-          {/* ADJUSTMENT: Professional Link Pattern */}
           <Link
             to="/allModels"
             className="hidden md:inline-flex items-center gap-3 text-indigo-600 font-bold group"
@@ -65,7 +63,6 @@ const AIModels = () => {
           </Link>
         </div>
 
-        {/* Grid Section: Constant Gap Ratios */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
           {modelsData.slice(0, 4).map((data) => (
             <div
@@ -77,7 +74,6 @@ const AIModels = () => {
           ))}
         </div>
 
-        {/* Mobile Action: Standardized Button Pattern */}
         <div className="mt-16 flex md:hidden">
           <Link
             to="/allModels"
@@ -92,51 +88,3 @@ const AIModels = () => {
 };
 
 export default AIModels;
-
-// import { useEffect, useState } from "react";
-// import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-// import ModelCard from "../../Cards/ModelCard";
-// import Container from "../../Container/Container";
-// import Loader from "../../Shared/Loader";
-
-// const AIModels = () => {
-//   const [modelsData, setModelsData] = useState();
-//   const [loading, setLoading] = useState(true);
-//   const axiosPublic = useAxiosSecure();
-
-//   useEffect(() => {
-//     const fetchModels = async () => {
-//       try {
-//         const data = await axiosPublic.get("/models");
-//         setModelsData(data.data);
-//       } catch (err) {
-//         console.log(err);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-//     fetchModels();
-//   }, [axiosPublic]);
-
-//   if (loading) {
-//     return <Loader />;
-//   }
-//   return (
-//     <div className="">
-//       <Container>
-//         <div className="flex flex-col items-center">
-//           <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-500 bg-clip-text text-transparent">
-//             Featured AI Models
-//           </h2>
-//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 md:gap-10 mt-8 md:mt-16">
-//             {modelsData.slice(0, 6).map((data) => (
-//               <ModelCard key={data._id} data={data} />
-//             ))}
-//           </div>
-//         </div>
-//       </Container>
-//     </div>
-//   );
-// };
-
-// export default AIModels;
